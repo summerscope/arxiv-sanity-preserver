@@ -144,10 +144,13 @@ function addPapers(num, dynamic) {
                       .append('a').attr('href', 'discuss?id='+strip_version(p.pid)).attr('style', 'color:'+discuss_color).html(discuss_text);
     ldiv.append('br');
 
-    var lib_state_img = p.in_library === 1 ? 'static/saved.png' : 'static/save.png';
-    var saveimg = ldiv.append('img').attr('src', lib_state_img)
+    var lib_state_img = p.in_library === 1 ? 'remove' : 'add';
+    var alt_text = p.in_library === 1 ? 'Remove from your library' : 'Save to your library';
+    var saveimg = ldiv.append('button').attr('class', lib_state_img)
                     .classed('save-icon', true)
-                    .attr('title', 'toggle save paper to library (requires login)')
+                    .attr('type', 'button')
+                    .attr('aria-label', alt_text)
+                    .attr('title', alt_text)
                     .attr('id', 'lib'+p.pid);
     // attach a handler for in-library toggle
     saveimg.on('click', function(pid, elt){
