@@ -102,7 +102,7 @@ function addPapers(num, dynamic) {
     pointer_ix++;
 
     var p = papers[ix];
-    var div = root.append('div').classed('apaper', true).attr('id', p.pid);
+    var div = root.append('article').classed('apaper', true).attr('id', p.pid);
 
     // Generate OpenURL COinS metadata element -- readable by Zotero, Mendeley, etc.
     var ocoins_span = div.append('span').classed('Z3988', true).attr('title', build_ocoins_str(p));
