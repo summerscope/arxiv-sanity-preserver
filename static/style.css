@@ -2,35 +2,59 @@ body {
 	margin: 0;
 	padding: 0;
 	font-family: arial;
-	background-color: #F6F3E5;
+	background-color: white;
+	font-size: 18px;
+	line-height: 1.35;
 }
-.as {
+/* .as {
 	font-size: 14px;
 	color: #900;
-}
-.cs {
+} */
+/* .cs {
 	color: #009;
 	font-size: 14px;
-}
+} */
 .ts {
 	font-weight: bold;
-	font-size: 16px;
+	font-size: 1.5em;
+	margin-bottom: 1em;
 }
-.as a:link{ text-decoration: none; color: #900; }
+/* .as a:link{ text-decoration: none; color: #900; }
 .as a:visited{ text-decoration: none; color: #900; }
 .as a:hover{ text-decoration: underline; color: #F00; }
-.as a:active{ text-decoration: none; color: #900; }
+.as a:active{ text-decoration: none; color: #900; } */
 
 .ts a:link{ text-decoration: none; color: #333; }
 .ts a:visited{ text-decoration: none; color: #333; }
 .ts a:hover{ text-decoration: underline; color: #000; }
 .ts a:active{ text-decoration: none; color: #333; }
 
-.cs a:link{ text-decoration: none; color: #009; }
-.cs a:visited{ text-decoration: none; color: #009; }
-.cs a:hover{ text-decoration: underline; color: #00F; }
-.cs a:active{ text-decoration: none; color: #009; }
-.ds {
+.cs{
+	display: inline-block;
+}
+.cs a{
+	background: blue; 
+	color: white; 
+	padding: 2px 10px; 
+	font-size: .7em; 
+	text-decoration: none;
+	line-height: 1;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	margin: 0 0 0 0.5em;
+	border-radius: 1em;
+	transition: all 200ms ease;
+}
+
+.cs a:before{
+	content: "#";
+	display: inline-block;
+}
+.cs a:link{  }
+.cs a:visited{ }
+.cs a:hover,
+.cs a:active{ opacity: 0.8; }
+/* .ds {
 	margin-right: 10px;
 	color: #090;
 	font-size: 14px;
@@ -39,19 +63,35 @@ body {
 	margin-right: 10px;
 	color: #099;
 	font-size: 14px;
-}
+} */
 .ccs {
 	color: #000;
 	font-size: 12px;
 }
 .tt {
-	color: #000;
+	/* color: #000;
 	background-color: #EFE;
 	font-size: 14px;
 	display: block;
 	padding: 10px;
 	border-radius: 5px;
-	text-align: justify;
+	text-align: justify; */
+	background-color: #f6f6f6;
+	font-size: 0.85em;
+	line-height: 1.5;
+	max-width: 650px;
+	padding: 20px 20px 20px;
+	display: block;
+	margin: 1em 0;
+}
+.tt:before{
+	content:"Abstract";
+	display: block;
+	color: #666;
+	font-size: 0.8em;
+	margin-bottom: 0.5em;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
 }
 .spid {
 	font-size: 14px;
@@ -104,7 +144,7 @@ h1 {
 }
 .paperdesc {
 	float: left;
-	width: 750px;
+	max-width: 600px;
 }
 
 .dllinks {

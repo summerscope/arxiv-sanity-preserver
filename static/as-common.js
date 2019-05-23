@@ -65,8 +65,7 @@ function build_categories_html(tags) {
   var res = '';
   for(var i=0,n=tags.length;i<n;i++) {
     var link = '/search?q=' + tags[i].replace(/ /g, "+");
-    res += '<a href="' + link + '">' + tags[i] + '</a>';
-    if(i<n-1) res += ' | ';
+    res += '<a class="cs" href="' + link + '">' + tags[i] + '</a>';
   }
   return res;
 }
