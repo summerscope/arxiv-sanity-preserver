@@ -15,6 +15,15 @@ a:hover, a:active{
 	text-decoration: underline;
 }
 
+p {
+	margin: 0.25em 0;
+	/* outline: 1px solid red; */
+}
+
+figure {
+	margin: 0;
+}
+
 /* .as {
 	font-size: 14px;
 	color: #900;
@@ -41,8 +50,8 @@ a:hover, a:active{
 
 .ts {
 	font-weight: bold;
-	font-size: 1.5em;
-	margin-bottom: 1em;
+	font-size: 1.25em;
+	margin: 0 0 0.25em 0;
 }
 /* .as a:link{ text-decoration: none; color: #900; }
 .as a:visited{ text-decoration: none; color: #900; }
@@ -141,16 +150,13 @@ h1 {
 #titdiv {
 	width: auto;
 	height: 70px;
-	background-color: #840000;
+	background-color: #bc318e;
 	color: white;
-
-	padding-top: 20px;
-	padding-left: 20px;
-
-	border-bottom: 1px solid #540000;
+	padding: 1em;
 }
+
 #tittxt {
-	width: 500px;
+	/* width: 500px; */
 	display: inline-block;
 }
 
@@ -201,12 +207,14 @@ h1 {
 /* .animg {
 	text-align: left;
 	height: 156px;
-} */
+}*/ 
 .animg img {
-	max-width: 100%;
+	width: 100%;
+	margin: 0.25em 0;
 }
+
 .paperdesc {
-	float: left;
+	/* float: left; */
 }
 
 .dllinks {

@@ -107,18 +107,17 @@ function addPapers(num, dynamic) {
     // Generate OpenURL COinS metadata element -- readable by Zotero, Mendeley, etc.
     var ocoins_span = div.append('span').classed('Z3988', true).attr('title', build_ocoins_str(p));
 
-    var tdiv = div.append('div').classed('paperdesc', true);
-    tdiv.append('span').classed('ts', true).append('a').attr('href', p.link).attr('target', '_blank').html(p.title);
-    tdiv.append('br');
-    tdiv.append('span').classed('as', true).html(build_authors_html(p.authors));
-    tdiv.append('br');
-    tdiv.append('span').classed('ds', true).html(p.published_time);
+    var tdiv = div.append('header').classed('paperdesc', true);
+    tdiv.append('h2').classed('ts', true).append('a').attr('href', p.link).attr('target', '_blank').html(p.title);
+    tdiv.append('p').classed('as', true).html(build_authors_html(p.authors));
+    tdiv.append('p').classed('ds', true).html(p.published_time);
     if(p.originally_published_time !== p.published_time) {
       tdiv.append('span').classed('ds2', true).html('(v1: ' + p.originally_published_time + ')');
     }
-    tdiv.append('span').classed('cs', true).html(build_categories_html(p.tags));
-    tdiv.append('br');
-    tdiv.append('span').classed('ccs', true).html(p.comment);
+    tdiv.append('p').classed('cs', true).html(build_categories_html(p.tags));
+    if(p.comment) {
+      tdiv.append('p').classed('ccs', true).html(p.comment);
+    } 
 
     // action items for each paper
     var ldiv = div.append('div').classed('dllinks', true);
@@ -174,7 +173,9 @@ function addPapers(num, dynamic) {
     div.append('div').attr('style', 'clear:both');
 
     if(typeof p.img !== 'undefined') {
-      div.append('div').classed('animg', true).append('img').attr('src', p.img);
+      div.append('figure').classed('animg', true)
+        .append('a').attr('href', p.img).attr('target', '_blank')
+        .append('img').attr('src', p.img);
     }
 
     if(typeof p.abstract !== 'undefined') {
