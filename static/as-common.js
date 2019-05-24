@@ -145,13 +145,12 @@ function addPapers(num, dynamic) {
     ldiv.append('br');
 
     var lib_state_img = p.in_library === 1 ? 'remove' : 'add';
-    var alt_text = p.in_library === 1 ? 'Remove from your library' : 'Save to your library';
-    var saveimg = ldiv.append('button').attr('class', lib_state_img)
+    var button_text = p.in_library === 1 ? 'Remove from your library' : 'Save to your library';
+    var saveimg = ldiv.append('button').attr('class', lib_state_img)                    
                     .classed('save-icon', true)
                     .attr('type', 'button')
-                    .attr('aria-label', alt_text)
-                    .attr('title', alt_text)
-                    .attr('id', 'lib'+p.pid);
+                    .attr('id', 'lib'+p.pid)
+                    .append('span').classed('sr-only', true).classed('sr-only-focusable', true).html(button_text);
     // attach a handler for in-library toggle
     saveimg.on('click', function(pid, elt){
       return function() {
@@ -161,9 +160,9 @@ function addPapers(num, dynamic) {
            .done(function(data){
               // toggle state of the image to reflect the state of the server, as reported by response
               if(data === 'ON') {
-                elt.attr('src', 'static/saved.png');
+                elt.attr('src', 'static/saved.svg');
               } else if(data === 'OFF') {
-                elt.attr('src', 'static/save.png');
+                elt.attr('src', 'static/plus.svg');
               }
            });
         } else {

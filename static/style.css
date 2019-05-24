@@ -24,6 +24,21 @@ a:hover, a:active{
 	font-size: 14px;
 } */
 
+.as a {
+	color: #444;
+	text-decoration: none;
+	padding: .1em;
+	font-size: 0.94444444444em;
+	border-radius: 0.25em;
+	transition: all 200ms ease;
+}
+
+.as a:hover,
+.as a:active {
+	background-color: #b4e7f8;
+	color: #111;
+}
+
 .ts {
 	font-weight: bold;
 	font-size: 1.5em;
@@ -577,4 +592,35 @@ ul.flashes li {
 	flex-flow: row wrap;
 	justify-content: space-between;
 	/* outline: 1px solid green; */
+}
+
+/* UTILS */
+
+/* Hidden visually for screen readers
+sourced https://gist.github.com/ffoodd/000b59f431e3e64e4ce1a24d5bb36034
+*/
+.sr-only {
+	border: 0 !important;
+	clip: rect(1px, 1px, 1px, 1px) !important;
+	-webkit-clip-path: inset(50%) !important;
+		clip-path: inset(50%) !important;
+	height: 1px !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	padding: 0 !important;
+	position: absolute !important;
+	width: 1px !important;
+	white-space: nowrap !important;
+}
+
+.sr-only-focusable:focus,
+.sr-only-focusable:active {
+	clip: auto !important;
+	-webkit-clip-path: none !important;
+		clip-path: none !important;
+	height: auto !important;
+	margin: auto !important;
+	overflow: visible !important;
+	width: auto !important;
+	white-space: normal !important;
 }

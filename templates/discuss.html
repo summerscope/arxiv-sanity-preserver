@@ -213,94 +213,93 @@ $(document).ready(function(){
 </head>
 
 <body>
-<a href="https://github.com/karpathy/arxiv-sanity-preserver"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
 
-<div id ="titdiv">
+  <div id ="titdiv">
 
-  <!-- User account information on top right -->
-  <div id="userinfo">
-    {% if not g.user %}
-    <form action="{{ url_for('login') }}" method="post">
-      User:
-      <input type="text" name="username" class="input-no-border">
-      Pass:
-      <input type="password" name="password" class="input-no-border">
-      <input type="submit" value="Login or Create" class="btn-fancy">
-    </form>
-    {% else %}
-    {{ g.user.username }}
-    <a href="{{ url_for('logout') }}">log out</a>
-    {% endif %}
+    <!-- User account information on top right -->
+    <div id="userinfo">
+      {% if not g.user %}
+      <form action="{{ url_for('login') }}" method="post">
+        User:
+        <input type="text" name="username" class="input-no-border">
+        Pass:
+        <input type="password" name="password" class="input-no-border">
+        <input type="submit" value="Login or Create" class="btn-fancy">
+      </form>
+      {% else %}
+      {{ g.user.username }}
+      <a href="{{ url_for('logout') }}">log out</a>
+      {% endif %}
+    </div>
+
+    <!-- Site information/banner on top left -->
+    <a href="/">
+    <div id="tittxt">
+      <h1>Arxiv Sanity Preserver</h1>
+      Built in spare time by <a href="https://twitter.com/karpathy">@karpathy</a> to accelerate research.<br>
+      Serving last {{ totpapers }} papers from cs.[CV|CL|LG|AI|NE]/stat.ML
+    </div>
+    </a>
   </div>
 
-  <!-- Site information/banner on top left -->
-	<a href="/">
-	<div id="tittxt">
-		<h1>Arxiv Sanity Preserver</h1>
-		Built in spare time by <a href="https://twitter.com/karpathy">@karpathy</a> to accelerate research.<br>
-		Serving last {{ totpapers }} papers from cs.[CV|CL|LG|AI|NE]/stat.ML
-	</div>
-	</a>
-</div>
+  <div id="flashesdiv">
+  {% with flashes = get_flashed_messages() %}
+      {% if flashes %}
+        <ul class="flashes">
+        {% for message in flashes %}
+          <li>{{ message }}
+        {% endfor %}
+        </ul>
+      {% endif %}
+  {% endwith %}
+  </div>
 
-<div id="flashesdiv">
-{% with flashes = get_flashed_messages() %}
-    {% if flashes %}
-      <ul class="flashes">
-      {% for message in flashes %}
-        <li>{{ message }}
-      {% endfor %}
-      </ul>
-    {% endif %}
-{% endwith %}
-</div>
-
-<div id="maindiv">
-  <!-- contains the paper of interest -->
-  <div id="rtable"></div>
-  <!-- functionality to add new comments -->
-  <div id="pitchin-cfa" style="background-color:#d7e5ff; padding: 10px; margin-top: 5px; border: 1px solid #b7c5e0; cursor: pointer;">Pitch in!</div>
-  <div id="pitchin" style="padding: 5px 5px 10px 5px; border-radius: 0px 0px 5px 5px; display: none;">
-    <div>
-      <div class="piitemdo">- <b>DO</b>: Add helpful links to code, project page, or related discussion.</div>
-      <div class="piitemdo">- <b>DO</b>: Offer <u>constructive</u> comments on this work.</div>
-      <div class="piitemdo">- <b>DON'T</b>: Post generic comments of little value, e.g. "this is great.", "nice", etc.</div>
-      <div class="piitemdo">- <b>DON'T</b>: Troll, call people names, be disrespectful. Pretty please.</div>
-    </div>
-    <div>
-      <!-- form for submitting a new discussion -->
-      <div style="border-top:1px solid black; margin-top:5px; padding-top:5px;">
-        <textarea id="post-text" rows="15" style="width: 98.5%;font-size: 16px;padding: 6px 6px;color: #333;line-height1.42857143:;border: 1px solid #ccc;box-shadow: inset 0 1px 1px rgba(0,0,0,.075);overflow: auto;border-radius: 4px;margin-top: 4px;"></textarea>
-        <div style="color:#555">(You can use $\LaTeX$ and markdown)</div>
+  <div id="maindiv">
+    <!-- contains the paper of interest -->
+    <div id="rtable"></div>
+    <!-- functionality to add new comments -->
+    <div id="pitchin-cfa" style="background-color:#d7e5ff; padding: 10px; margin-top: 5px; border: 1px solid #b7c5e0; cursor: pointer;">Pitch in!</div>
+    <div id="pitchin" style="padding: 5px 5px 10px 5px; border-radius: 0px 0px 5px 5px; display: none;">
+      <div>
+        <div class="piitemdo">- <b>DO</b>: Add helpful links to code, project page, or related discussion.</div>
+        <div class="piitemdo">- <b>DO</b>: Offer <u>constructive</u> comments on this work.</div>
+        <div class="piitemdo">- <b>DON'T</b>: Post generic comments of little value, e.g. "this is great.", "nice", etc.</div>
+        <div class="piitemdo">- <b>DON'T</b>: Troll, call people names, be disrespectful. Pretty please.</div>
       </div>
       <div>
-        <div id="preview-wrap" style="display:none; margin-bottom:5px;">
-          <div style="margin-top: 5px;padding-top: 5px;font-size: 20px;">Live preview:</div>
-          <div id="preview" style="background-color: #fff;padding: 5px;border: 1px solid #999;"></div>
+        <!-- form for submitting a new discussion -->
+        <div style="border-top:1px solid black; margin-top:5px; padding-top:5px;">
+          <textarea id="post-text" rows="15" style="width: 98.5%;font-size: 16px;padding: 6px 6px;color: #333;line-height1.42857143:;border: 1px solid #ccc;box-shadow: inset 0 1px 1px rgba(0,0,0,.075);overflow: auto;border-radius: 4px;margin-top: 4px;"></textarea>
+          <div style="color:#555">(You can use $\LaTeX$ and markdown)</div>
         </div>
-        <div style="background-color: #eee; padding:5px;">
-          <form action="">
-            On this paper's topic, I am:
-            <input type="radio" name="conf" value="expert"> expert
-            <input type="radio" name="conf" value="confident"> confident
-            <input type="radio" name="conf" value="uncertain"> uncertain
-            <br>
-            <input type="checkbox" name="anon" value="anon"> Post anonymously
-          </form>
+        <div>
+          <div id="preview-wrap" style="display:none; margin-bottom:5px;">
+            <div style="margin-top: 5px;padding-top: 5px;font-size: 20px;">Live preview:</div>
+            <div id="preview" style="background-color: #fff;padding: 5px;border: 1px solid #999;"></div>
+          </div>
+          <div style="background-color: #eee; padding:5px;">
+            <form action="">
+              On this paper's topic, I am:
+              <input type="radio" name="conf" value="expert"> expert
+              <input type="radio" name="conf" value="confident"> confident
+              <input type="radio" name="conf" value="uncertain"> uncertain
+              <br>
+              <input type="checkbox" name="anon" value="anon"> Post anonymously
+            </form>
+          </div>
+          <div><button id="btnpost" style="margin-top:5px;" class="ppbutton">Post</button></div>
+          <div id="errors-etc" style="display:none; background-color:#fee; padding:5px; margin-top:5px;"></div>
         </div>
-        <div><button id="btnpost" style="margin-top:5px;" class="ppbutton">Post</button></div>
-        <div id="errors-etc" style="display:none; background-color:#fee; padding:5px; margin-top:5px;"></div>
       </div>
+    </div>
+
+    <!-- contains the discussion -->
+    <div id="discussion">
+      <div style="padding:5px; margin-top:10px; font-size:20px;">Discussion:</div>
     </div>
   </div>
 
-  <!-- contains the discussion -->
-  <div id="discussion">
-    <div style="padding:5px; margin-top:10px; font-size:20px;">Discussion:</div>
-  </div>
-</div>
-
-<br><br><br><br><br><br>
+  <br><br><br><br><br><br>
 </body>
 
 </html>
