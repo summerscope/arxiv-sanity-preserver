@@ -110,9 +110,9 @@ function addPapers(num, dynamic) {
     var tdiv = div.append('header').classed('paperdesc', true);
     tdiv.append('h2').classed('ts', true).append('a').attr('href', p.link).attr('target', '_blank').html(p.title);
     tdiv.append('p').classed('as', true).html(build_authors_html(p.authors));
-    tdiv.append('p').classed('ds', true).html(p.published_time);
+    tdiv.append('time').classed('ds', true).html(p.published_time);
     if(p.originally_published_time !== p.published_time) {
-      tdiv.append('span').classed('ds2', true).html('(v1: ' + p.originally_published_time + ')');
+      tdiv.append('time').classed('ds2', true).html(' (v1: ' + p.originally_published_time + ')');
     }
     tdiv.append('p').classed('cs', true).html(build_categories_html(p.tags));
     if(p.comment) {

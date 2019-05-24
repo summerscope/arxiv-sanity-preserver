@@ -36,9 +36,11 @@ figure {
 .as a {
 	color: #444;
 	text-decoration: none;
-	padding: .1em;
+	padding: 0 .15em;
 	font-size: 0.94444444444em;
-	border-radius: 0.25em;
+	-webkit-box-shadow: inset 0px -2px 0px 0px rgba(180,231,248,1);
+	-moz-box-shadow: inset 0px -2px 0px 0px rgba(180,231,248,1);
+	box-shadow: inset 0px -2px 0px 0px rgba(180,231,248,1);
 	transition: all 200ms ease;
 }
 
@@ -46,6 +48,7 @@ figure {
 .as a:active {
 	background-color: #b4e7f8;
 	color: #111;
+	border-radius: 0.25em;
 }
 
 .ts {
@@ -168,20 +171,17 @@ h1 {
 .apaper {
 	background-color: white;
 	position: relative;
-	background-image:url('/static/corner.svg');
-	background-repeat: no-repeat;
-	background-size: 3em 3em;
-	background-position: top right;
 	width: calc(100% - 5em);
 	margin: 0.5em 0;
 	font-size: 0.77777777777em;
 	padding: 3em 2em 2em;
-	-webkit-clip-path: polygon(calc(100% - 3em) 0, 100% 3em, 110% 110%, -10% 110%, -10% -10%);
-	clip-path: polygon(calc(100% - 3em) 0, 100% 3em, 110% 110%, -10% 110%, -10% -10%);
+	border: 1px solid #e5e5e5;
 	-webkit-box-shadow: 0px 6px 5px 0px rgba(0,0,0,0.05);
 	-moz-box-shadow: 0px 6px 5px 0px rgba(0,0,0,0.05);
 	box-shadow: 0px 6px 5px 0px rgba(0,0,0,0.05);
-	border: 1px solid #e5e5e5;
+	/* Clip the top right corner of the paper */
+	-webkit-clip-path: polygon(calc(100% - 48px) 0, 100% 48px, 110% 110%, -10% 110%, -10% -10%);
+	clip-path: polygon(calc(100% - 48px) 0, 100% 48px, 110% 110%, -10% 110%, -10% -10%);
 }
 
 @media screen and (min-width: 756px){
@@ -319,20 +319,22 @@ h1 {
 #titdiv a:active{ text-decoration: none; color: #FFF;}
 
 .save-icon {
-	background-color: transparent;
-	background-image: url(/static/plus.svg);	
-	background-size: 100%;
+	background-color: white;
+	background-image: url(/static/plus.svg);
+	background-size: 40%;
+	background-position: 4px 22px;
 	background-repeat: no-repeat;
-	margin: 2em 2em 0 0;
+	padding: calc(24px - 2px);
 	position: absolute;
-	width: 2em;
-	height: 2em;
-	top: 0em;
-	right: 0em;
+	top: 0;
+	right: 0;
 	cursor: pointer;
 	border-color: transparent;
-	opacity: 0.5;
 	transition: all 200ms ease;
+	border: 1px solid #e5e5e5;
+	opacity: 0.7;
+	-webkit-box-shadow: -1px 1px 4px 0px rgba(0,0,0,0.08); 
+	box-shadow: -1px 1px 4px 0px rgba(0,0,0,0.08);
 }
 
 .save-icon.remove {
