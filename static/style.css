@@ -68,6 +68,7 @@ figure {
 
 .cs{
 	display: inline-block;
+	margin-top: 0;
 }
 .cs a{
 	color: #666;
@@ -77,10 +78,13 @@ figure {
 	line-height: 1;
 	text-transform: uppercase;
 	letter-spacing: 0.1em;
-	margin: 0 0 0 0.5em;
+	margin: 0 0.5em 0 0;
 	border-radius: 0.25em;
 	transition: all 200ms ease;
-	/* border: 1px solid #b4e7f8; */
+}
+
+.cs a:last-child {
+	margin-right: 0;
 }
 
 .cs a:before{
@@ -98,16 +102,10 @@ figure {
 .cs a:visited{ }
 .cs a:hover,
 .cs a:active{ color: #333; background-color: #b4e7f8;}
-/* .ds {
-	margin-right: 10px;
-	color: #090;
-	font-size: 14px;
+.ds, .ds2 {
+	color: #444;
+	font-size: 0.944444444em;
 }
-.ds2 {
-	margin-right: 10px;
-	color: #099;
-	font-size: 14px;
-} */
 .ccs {
 	color: #000;
 	font-size: 12px;
@@ -174,7 +172,7 @@ h1 {
 	width: calc(100% - 5em);
 	margin: 0.5em 0;
 	font-size: 0.77777777777em;
-	padding: 3em 2em 2em;
+	padding: 3em 2em 2em 2em;
 	border: 1px solid #e5e5e5;
 	-webkit-box-shadow: 0px 6px 5px 0px rgba(0,0,0,0.05);
 	-moz-box-shadow: 0px 6px 5px 0px rgba(0,0,0,0.05);
@@ -208,6 +206,7 @@ h1 {
 	text-align: left;
 	height: 156px;
 }*/ 
+
 .animg img {
 	width: 100%;
 	margin: 0.25em 0;
@@ -217,10 +216,11 @@ h1 {
 	/* float: left; */
 }
 
-.dllinks {
+/* .dllinks {
 	float: right;
 	text-align: right;
-}
+} */
+
 .w {
 	color: #050;
 	cursor: pointer;
@@ -601,6 +601,7 @@ ul.flashes li {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: space-between;
+	align-items: flex-start;
 	/* outline: 1px solid green; */
 }
 

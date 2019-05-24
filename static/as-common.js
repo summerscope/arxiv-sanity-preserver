@@ -108,48 +108,40 @@ function addPapers(num, dynamic) {
     var ocoins_span = div.append('span').classed('Z3988', true).attr('title', build_ocoins_str(p));
 
     var tdiv = div.append('header').classed('paperdesc', true);
-    tdiv.append('h2').classed('ts', true).append('a').attr('href', p.link).attr('target', '_blank').html(p.title);
-    tdiv.append('p').classed('as', true).html(build_authors_html(p.authors));
-    tdiv.append('time').classed('ds', true).html(p.published_time);
-    if(p.originally_published_time !== p.published_time) {
-      tdiv.append('time').classed('ds2', true).html(' (v1: ' + p.originally_published_time + ')');
-    }
-    tdiv.append('p').classed('cs', true).html(build_categories_html(p.tags));
-    if(p.comment) {
-      tdiv.append('p').classed('ccs', true).html(p.comment);
-    } 
 
-    // action items for each paper
-    var ldiv = div.append('div').classed('dllinks', true);
-    // show raw arxiv id
-    ldiv.append('span').classed('spid', true).html(p.pid);
-    // access PDF of the paper
-    var pdf_link = p.link.replace("abs", "pdf"); // convert from /abs/ link to /pdf/ link. url hacking. slightly naughty
-    if(pdf_link === p.link) { var pdf_url = pdf_link } // replace failed, lets fall back on arxiv landing page
-    else { var pdf_url = pdf_link + '.pdf'; }
-    ldiv.append('a').attr('href', pdf_url).attr('target', '_blank').html('pdf');
-    
-    // rank by tfidf similarity
-    ldiv.append('br');
-    var similar_span = ldiv.append('span').classed('sim', true).attr('id', 'sim'+p.pid).html('show similar');
-    similar_span.on('click', function(pid){ // attach a click handler to redirect for similarity search
-      return function() { window.location.replace('/' + pid); }
-    }(p.pid)); // closer over the paper id
-
-    // var review_span = ldiv.append('span').classed('sim', true).attr('style', 'margin-left:5px; padding-left: 5px; border-left: 1px solid black;').append('a').attr('href', 'http://www.shortscience.org/paper?bibtexKey='+p.pid).html('review');
-    var discuss_text = p.num_discussion === 0 ? 'discuss' : 'discuss [' + p.num_discussion + ']';
-    var discuss_color = p.num_discussion === 0 ? 'black' : 'red';
-    var review_span = ldiv.append('span').classed('sim', true).attr('style', 'margin-left:5px; padding-left: 5px; border-left: 1px solid black;')
-                      .append('a').attr('href', 'discuss?id='+strip_version(p.pid)).attr('style', 'color:'+discuss_color).html(discuss_text);
-    ldiv.append('br');
-
+    // Save/Remove from library
     var lib_state_img = p.in_library === 1 ? 'remove' : 'add';
     var button_text = p.in_library === 1 ? 'Remove from your library' : 'Save to your library';
-    var saveimg = ldiv.append('button').attr('class', lib_state_img)                    
+    var saveimg = tdiv.append('button').attr('class', lib_state_img)                    
                     .classed('save-icon', true)
                     .attr('type', 'button')
                     .attr('id', 'lib'+p.pid)
                     .append('span').classed('sr-only', true).classed('sr-only-focusable', true).html(button_text);
+
+    // Paper title
+    tdiv.append('h2').classed('ts', true).append('a').attr('href', p.link).attr('target', '_blank').html(p.title);
+
+    // Paper authors
+    tdiv.append('p').classed('as', true).html(build_authors_html(p.authors));
+
+    // Paper publish date
+    tdiv.append('time').classed('ds', true).html(p.published_time);
+    if(p.originally_published_time !== p.published_time) {
+      tdiv.append('time').classed('ds2', true).html(' (v1: ' + p.originally_published_time + ')');
+    }
+    
+    // show raw arxiv id
+    tdiv.append('p').classed('spid', true).html('Arxiv ' + p.pid);
+    // access PDF of the paper
+    var pdf_link = p.link.replace("abs", "pdf"); // convert from /abs/ link to /pdf/ link. url hacking. slightly naughty
+    if(pdf_link === p.link) { var pdf_url = pdf_link } // replace failed, lets fall back on arxiv landing page
+    else { var pdf_url = pdf_link + '.pdf'; }
+    tdiv.append('a').attr('href', pdf_url).attr('target', '_blank').html('Launch PDF');
+
+    if(p.comment) {
+      tdiv.append('p').classed('ccs', true).html(p.comment);
+    }
+                    
     // attach a handler for in-library toggle
     saveimg.on('click', function(pid, elt){
       return function() {
@@ -169,8 +161,7 @@ function addPapers(num, dynamic) {
         }
       }
     }(p.pid, saveimg)); // close over the pid and handle to the image
-
-    div.append('div').attr('style', 'clear:both');
+    
 
     if(typeof p.img !== 'undefined') {
       div.append('figure').classed('animg', true)
@@ -178,18 +169,35 @@ function addPapers(num, dynamic) {
         .append('img').attr('src', p.img);
     }
 
-    if(typeof p.abstract !== 'undefined') {
-      var abdiv = div.append('span').classed('tt', true).html(p.abstract);
-      if(dynamic) {
-        MathJax.Hub.Queue(["Typeset",MathJax.Hub,abdiv[0]]); //typeset the added paper
-      }
-    }
+    var ftdiv = div.append('nav');
+    ftdiv.append('div').classed('cs', true).html(build_categories_html(p.tags));
+    // action items for each paper
+
+    // rank by tfidf similarity
+    ftdiv.append('div').classed('buttons', true);
+    var similar_span = ftdiv.append('button').classed('sim', true).attr('type', button).attr('id', 'sim'+p.pid).html('show similar');
+    similar_span.on('click', function(pid){ // attach a click handler to redirect for similarity search
+      return function() { window.location.replace('/' + pid); }
+    }(p.pid)); // closer over the paper id
+
+    // var review_span = ldiv.append('span').classed('sim', true).attr('style', 'margin-left:5px; padding-left: 5px; border-left: 1px solid black;').append('a').attr('href', 'http://www.shortscience.org/paper?bibtexKey='+p.pid).html('review');
+    var discuss_text = p.num_discussion === 0 ? 'discuss' : 'discuss [' + p.num_discussion + ']';
+    var discuss_color = p.num_discussion === 0 ? 'black' : 'red';
+    var review_span = ftdiv.append('button').classed('sim', true).attr('type', button)
+                           .append('a').attr('href', 'discuss?id='+strip_version(p.pid)).html(discuss_text);
 
     // in friends tab, list users who the user follows who had these papers in libary
     if(render_format === 'friends') {
       if(pid_to_users.hasOwnProperty(p.rawpid)) {
         var usrtxt = pid_to_users[p.rawpid].join(', ');
         div.append('div').classed('inlibsof', true).html('In libraries of: ' + usrtxt);
+      }
+    }
+
+    if(typeof p.abstract !== 'undefined') {
+      var abdiv = div.append('div').classed('tt', true).html(p.abstract);
+      if(dynamic) {
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub,abdiv[0]]); //typeset the added paper
       }
     }
 
