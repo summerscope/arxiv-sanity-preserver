@@ -152,20 +152,29 @@ figure {
 	margin-right: 5px;
 	color: #555;
 } */
+
 h1 {
-	font-size: 1.5em;
+	font-size: 1.66666666667em;
+	line-height: 1;
 	padding: 0;
-	margin: 0;
+	margin: 0 0 0.35em 0;
+	display: flex;
 }
 
 h1 small {
-	font-weight: 400;
+	font-weight: 300;
+	font-size: 0.6em;
+	padding: 0.5em 0.5em 0 0.5em;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	margin-left: 0.5em;
 }
 
 #titdiv {
 	background-color: #bc318e;
 	color: white;
 	padding: 1em;
+	font-weight: 300;
 }
 
 #tittxt {
@@ -327,9 +336,27 @@ h1 small {
 }
 
 #titdiv a {
-	font-weight: bold;
 	text-decoration: none;
 	color: white;
+	-webkit-box-shadow: inset 0px -2px 0px 0px rgba(255,255,255,0.35);
+	-moz-box-shadow: inset 0px -2px 0px 0px rgba(255,255,255,0.35);
+	box-shadow: inset 0px -2px 0px 0px rgba(255,255,255,0.35);
+}
+
+#titdiv a:hover,
+#titdiv a:active,
+#titdiv a:focus {
+	text-decoration: none;
+	color: white;
+	-webkit-box-shadow: inset 0px -2px 0px 0px rgba(255,255,255,0.65);
+	-moz-box-shadow: inset 0px -2px 0px 0px rgba(255,255,255,0.65);
+	box-shadow: inset 0px -2px 0px 0px rgba(255,255,255,0.65);
+}
+
+#titdiv h1 a {
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
 }
 
 .save-icon {
