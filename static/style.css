@@ -20,7 +20,7 @@ p {
 	/* outline: 1px solid red; */
 }
 
-button {
+button, input[type="submit"] {
 	color: white;
 	font-size: 0.888888888em;
 	background: #278aab;
@@ -171,7 +171,8 @@ h1 small {
 }
 
 #titdiv {
-	background-color: #bc318e;
+	background: #bc318e;
+	background: linear-gradient(58deg, rgba(188,49,142,1) 0%, rgba(198,0,0,1) 100%);
 	color: white;
 	padding: 1em;
 	font-weight: 300;
@@ -278,16 +279,19 @@ h1 small {
 	/* outline:0; */
 }
 #sbox {
-	margin-top: 10px;
-  text-align: center;
+	text-align: center;
+	flex-grow: 2;
 }
+
 .msg {
 	background-color: #EEF;
+	background: linear-gradient(58deg, rgba(188,49,142,0.1) 0%, rgba(198,0,0,0.1) 100%);
 	padding: 10px;
-	border-radius: 10px;
+	border-radius: 0.25em;
 	margin-top: 2px;
 	width: 100%;
 	margin: 1em 0;
+	border: 1px solid rgba(188,49,142,0.2);
 }
 .paperdivider {
 	background-color: #EEF;
@@ -437,30 +441,64 @@ ul.flashes li {
 #pagebar {
 	/* width: 970px; */
 	padding: 10px 15px 0px 15px;
-	margin-left: auto;
-	margin-right: auto;
-
-	border-top: solid 1px #D6D3C5;
-	border-left: solid 1px #D6D3C5;
-	border-right: solid 1px #D6D3C5;
-
-	background-color: #EEE;
+	margin: 0 auto;
+	align-items: flex-end;
+	background-color: #d8d8d8;
+	display: flex;
 }
+
 .pagelink {
+	display: inline-block;
+}
+
+.checkbx {
+	padding:  0.8888em 1.25em;
+	position: relative;
+}
+
+.checkbx input[type="checkbox"] {
+	padding: 0;
+	box-sizing: border-box;
+	/* position: absolute; */
+}
+
+.checkbx label {
+	font-size: 0.9444444444444em;
+}
+
+#pagebar a {
 	display: inline-block;
 	margin-right: 3px;
 	font-size: 16px;
+	border-left: 1px solid #b4b4b4;
+	border-right: 1px solid #b4b4b4;
+	border-top: 1px solid #b4b4b4;
+	padding:  0.8888em 1.25em;
+	background-color: #e8e8e8;
+	border-radius: 0.5em 0.5em 0 0;
+	font-weight: 700;
+	-webkit-box-shadow: 0px -3px 5px 0px rgba(0,0,0,0.05);
+	-moz-box-shadow: 0px -3px 5px 0px rgba(0,0,0,0.05);
+	box-shadow: 0px -3px 5px 0px rgba(0,0,0,0.05);
+	text-decoration: none;
+	color: #555;
+	transition: all 200ms ease;
+}
+
+#pagebar a:hover,
+#pagebar a:active,
+#pagebar a:focus {
+	color: #000;
+	background-color: #F7F7F7;
+}
+
+#pagebar a.tab-selected {
+	background-color: #F7F7F7;
+	color: #9a0061;
 	border-left: 1px solid #AAA;
 	border-right: 1px solid #AAA;
 	border-top: 1px solid #AAA;
-	
-	padding: 10px 5px 10px 5px;
-	background-color: #CCE;
 }
-#pagebar a:link{ text-decoration: none; color: #338;}
-#pagebar a:visited{ text-decoration: none; color: #338;}
-#pagebar a:hover{ text-decoration: none; color: #338;}
-#pagebar a:active{ text-decoration: none; color: #338;}
 
 .centerdiv {
 	/* width: 970px; */
@@ -471,7 +509,7 @@ ul.flashes li {
 	border-right: solid 1px #D6D3C5;
 }
 #recommend-time-choice {
-	background-color: #FFF;
+	background-color: #F7F7F7;
 	text-align: center;
 }
 #recommend-time-choice a:link{ text-decoration: none; color: #338;}
@@ -498,9 +536,7 @@ ul.flashes li {
 .vchoice-selected {
 	background-color: #CEC;
 }
-.tab-selected {
-	background-color: #FFF;
-}
+
 .fdivider {
 	display: inline-block;
 	background-color: #FFF;

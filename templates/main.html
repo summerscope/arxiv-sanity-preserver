@@ -227,35 +227,39 @@ $(document).ready(function(){
   </div>
   {% endif %}
 
-  <div id="pagebar">
-    <div class="pagelink" id="tabrecent"><a href="/">most recent</a></div>
-    <div class="pagelink" id="tabtop"><a href="/top">top recent</a></div>
-    <div class="pagelink" id="tabtwtr"><a href="/toptwtr">top hype</a></div>
-    <div class="pagelink" id="tabfriends"><a href="/friends">friends</a></div>
-    <div class="pagelink" id="tabdiscussions"><a href="/discussions">discussions</a></div>
-    <div class="pagelink" id="tabrec"><a href="/recommend">recommended</a></div>
-    <div class="pagelink" id="tablib"><a href="/library">library</a></div>
-  </div>
-
-  <div id="sbox">
-    <form action="/search" method="get">
-      <input name="q" type="text" id="qfield">
-    </form>
-    <div id="search_hint"></div>
-  </div>
+  <nav id="pagebar">
+    <a class="pagelink" id="tabrecent" href="/">Most recent</a>
+    <a class="pagelink" id="tabtop" href="/top">Top recent</a>
+    <a class="pagelink" id="tabtwtr" href="/toptwtr">Top hype</a>
+    <a class="pagelink" id="tabfriends" href="/friends">Friends</a>
+    <a class="pagelink" id="tabdiscussions" href="/discussions">Discussions</a>
+    <a class="pagelink" id="tabrec" href="/recommend">Recommended</a>
+    <a class="pagelink" id="tablib" href="/library">Library</a>
+    <div id="sbox">
+      <form action="/search" method="get">
+        <input name="q" type="text" id="qfield">
+      </form>
+      <div id="search_hint"></div>
+    </div>
+  </nav>
 
   <!-- this div will be rendered into dynamcially at init with JS -->
   <div id="recommend-time-choice" class="centerdiv"></div>
 
   <div id="maindiv">
 
-  <div id="rtable"></div>
+    <div id="rtable"></div>
 
-  <div id="loadmore">
-    <button id="loadmorebtn">Load more</button>
+    <div id="loadmore">
+      <button id="loadmorebtn">Load more</button>
+    </div>
+
   </div>
 
-  </div>
+  <!-- <div class="checkbx">
+    <input type="checkbox" id="ShowV1"> 
+    <label for="ShowV1">Show V1 only</label>
+  </div> -->
 
 </body>
 
