@@ -3,7 +3,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Arxiv Sanity Preserver</title>
+<title>FairXiv</title>
 
 <!-- MathJax -->
 <script type="text/x-mathjax-config">
@@ -215,7 +215,7 @@ $(document).ready(function(){
 
 <body>
 
-  <div id ="titdiv">
+  <header id ="titdiv">
 
     <!-- User account information on top right -->
     <div id="userinfo">
@@ -237,11 +237,11 @@ $(document).ready(function(){
     <div id="tittxt">
       <h1><a href="/">FairXiv</a> <small>📢 Serving latest {{ totpapers }} Fair &amp; Ethical ML/AL papers 📢</small></h1>
       Usability &amp; accessibility-first Arxiv UI by <a href="https://twitter.com/summerscope" target="_blank">@summerscope</a> <br />
-      Forked <a href="http://www.arxiv-sanity.com/" target="_blank">Arxiv Sanity Preserver</a> by <a href="https://twitter.com/karpathy" target="_blank">@karpathy</a>
+      A fork of <a href="http://www.arxiv-sanity.com/" target="_blank">Arxiv Sanity Preserver</a> by <a href="https://twitter.com/karpathy" target="_blank">@karpathy</a>
       <!--cs.[CV|CL|LG|AI|NE]/stat.ML-->
     </div>
 
-  </div>
+  </header>
 
   <div id="flashesdiv">
   {% with flashes = get_flashed_messages() %}
