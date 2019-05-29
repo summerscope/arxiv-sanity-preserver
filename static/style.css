@@ -60,6 +60,10 @@ figure {
 	border-radius: 0.25em;
 }
 
+.flex {
+	display: flex;
+}
+
 .ts {
 	font-weight: bold;
 	font-size: 1.25em;
@@ -289,8 +293,7 @@ h1 small {
 	padding: 10px;
 	border-radius: 0.25em;
 	margin-top: 2px;
-	width: 100%;
-	margin: 1em 0;
+	margin: 0;
 	border: 1px solid rgba(188,49,142,0.2);
 }
 .paperdivider {
@@ -508,10 +511,17 @@ ul.flashes li {
 	border-left: solid 1px #D6D3C5;
 	border-right: solid 1px #D6D3C5;
 }
+
+#sys-messages {
+	margin-bottom: 0.75em;
+}
 #recommend-time-choice {
 	background-color: #F7F7F7;
-	text-align: center;
+	padding: 1em 0 1em 1em;
+	width: 300px;
+	border: 1px solid red;
 }
+
 #recommend-time-choice a:link{ text-decoration: none; color: #338;}
 #recommend-time-choice a:visited{ text-decoration: none; color: #338;}
 #recommend-time-choice a:hover{ text-decoration: none; color: #338;}

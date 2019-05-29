@@ -57,7 +57,7 @@ $(document).ready(function(){
 	urlq = QueryString.q;
 
   // display message, if any
-  if(msg !== '') { d3.select("#rtable").append('div').classed('msg', true).html(msg); }
+  if(msg !== '') { d3.select("#sys-messages").append('div').classed('msg', true).html(msg); }
 
   // add papers to #rtable
 	var done = addPapers(10, false);
@@ -244,16 +244,18 @@ $(document).ready(function(){
   </nav>
 
   <!-- this div will be rendered into dynamcially at init with JS -->
-  <div id="recommend-time-choice" class="centerdiv"></div>
+  <div class="flex">
+    <nav id="recommend-time-choice"></nav>
+    <main id="maindiv">
+      <aside id="sys-messages"></aside>
 
-  <div id="maindiv">
+      <div id="rtable"></div>
 
-    <div id="rtable"></div>
+      <div id="loadmore">
+        <button id="loadmorebtn">Load more</button>
+      </div>
 
-    <div id="loadmore">
-      <button id="loadmorebtn">Load more</button>
-    </div>
-
+    </main>
   </div>
 
   <!-- <div class="checkbx">
