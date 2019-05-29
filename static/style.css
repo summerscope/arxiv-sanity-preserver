@@ -20,6 +20,15 @@ p {
 	/* outline: 1px solid red; */
 }
 
+button {
+	color: white;
+	font-size: 0.888888888em;
+	background: #278aab;
+	/* border-color: #54a8c4; */
+	padding: 0.5em 1em;
+	border-radius: 0.25em;
+}
+
 figure {
 	margin: 0;
 }
@@ -138,19 +147,22 @@ figure {
 	text-transform: uppercase;
 	letter-spacing: 0.1em;
 }
-.spid {
+/* .spid {
 	font-size: 14px;
 	margin-right: 5px;
 	color: #555;
-}
+} */
 h1 {
-	font-size: 20px;
+	font-size: 1.5em;
 	padding: 0;
 	margin: 0;
 }
+
+h1 small {
+	font-weight: 400;
+}
+
 #titdiv {
-	width: auto;
-	height: 70px;
 	background-color: #bc318e;
 	color: white;
 	padding: 1em;
@@ -292,8 +304,8 @@ h1 {
 
 #userinfo {
 	position: absolute;
-	top: 10px;
-	right: 150px;
+	top: 1em;
+	right: 1em;
 	color: white;
 	font-size: 16px;
 }
@@ -313,10 +325,12 @@ h1 {
 	border: 1px solid white;
 	padding: 5px;
 }
-#titdiv a:link{ text-decoration: none; color: #FFF;}
-#titdiv a:visited{ text-decoration: none; color: #FFF;}
-#titdiv a:hover{ text-decoration: none; color: #FFF;}
-#titdiv a:active{ text-decoration: none; color: #FFF;}
+
+#titdiv a {
+	font-weight: bold;
+	text-decoration: none;
+	color: white;
+}
 
 .save-icon {
 	background-color: white;
@@ -606,6 +620,10 @@ ul.flashes li {
 }
 
 /* UTILS */
+
+.links {
+	font-size: 0.944444444em;
+}
 
 /* Hidden visually for screen readers
 sourced https://gist.github.com/ffoodd/000b59f431e3e64e4ce1a24d5bb36034

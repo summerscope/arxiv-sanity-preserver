@@ -119,7 +119,7 @@ function addPapers(num, dynamic) {
                     .append('span').classed('sr-only', true).classed('sr-only-focusable', true).html(button_text);
 
     // Paper title
-    tdiv.append('h2').classed('ts', true).append('a').attr('href', p.link).attr('target', '_blank').html(p.title);
+    tdiv.append('h2').classed('ts', true).html(p.title);
 
     // Paper authors
     tdiv.append('p').classed('as', true).html(build_authors_html(p.authors));
@@ -129,18 +129,21 @@ function addPapers(num, dynamic) {
     if(p.originally_published_time !== p.published_time) {
       tdiv.append('time').classed('ds2', true).html(' (v1: ' + p.originally_published_time + ')');
     }
-    
-    // show raw arxiv id
-    tdiv.append('p').classed('spid', true).html('Arxiv ' + p.pid);
+
     // access PDF of the paper
     var pdf_link = p.link.replace("abs", "pdf"); // convert from /abs/ link to /pdf/ link. url hacking. slightly naughty
     if(pdf_link === p.link) { var pdf_url = pdf_link } // replace failed, lets fall back on arxiv landing page
     else { var pdf_url = pdf_link + '.pdf'; }
-    tdiv.append('a').attr('href', pdf_url).attr('target', '_blank').html('Launch PDF');
+
+    // show raw arxiv id
+
+    tdiv.append('div').classed('links', true)
+      .append('a', 'a').attr('href', p.link).attr('target', '_blank').html('Arxiv ' + p.pid)
+      .append('a').attr('href', pdf_url).attr('target', '_blank').html('Read the PDF');
 
     if(p.comment) {
       tdiv.append('p').classed('ccs', true).html(p.comment);
-    }
+    } 
                     
     // attach a handler for in-library toggle
     saveimg.on('click', function(pid, elt){
@@ -175,15 +178,15 @@ function addPapers(num, dynamic) {
 
     // rank by tfidf similarity
     ftdiv.append('div').classed('buttons', true);
-    var similar_span = ftdiv.append('button').classed('sim', true).attr('type', button).attr('id', 'sim'+p.pid).html('show similar');
-    similar_span.on('click', function(pid){ // attach a click handler to redirect for similarity search
+    var find_similar = ftdiv.append('button').classed('sim', true).attr('id', 'sim'+p.pid).html('show similar');
+    find_similar.on('click', function(pid){ // attach a click handler to redirect for similarity search
       return function() { window.location.replace('/' + pid); }
     }(p.pid)); // closer over the paper id
 
     // var review_span = ldiv.append('span').classed('sim', true).attr('style', 'margin-left:5px; padding-left: 5px; border-left: 1px solid black;').append('a').attr('href', 'http://www.shortscience.org/paper?bibtexKey='+p.pid).html('review');
     var discuss_text = p.num_discussion === 0 ? 'discuss' : 'discuss [' + p.num_discussion + ']';
     var discuss_color = p.num_discussion === 0 ? 'black' : 'red';
-    var review_span = ftdiv.append('button').classed('sim', true).attr('type', button)
+    var review_span = ftdiv.append('button').classed('sim', true)
                            .append('a').attr('href', 'discuss?id='+strip_version(p.pid)).html(discuss_text);
 
     // in friends tab, list users who the user follows who had these papers in libary
@@ -232,7 +235,7 @@ function addPapers(num, dynamic) {
 
     if(render_format == 'paper' && ix === 0) {
       // lets insert a divider/message
-      div.append('div').classed('paperdivider', true).html('Most similar papers:');
+      root.append('div').classed('paperdivider', true).html('Most similar papers:');
     }
   }
 
