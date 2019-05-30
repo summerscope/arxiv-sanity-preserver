@@ -3,6 +3,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>FairXiv</title>
 
 <!-- MathJax -->
@@ -215,30 +216,34 @@ $(document).ready(function(){
 
 <body>
 
-  <header id ="titdiv">
+  <header>
+
+    <!-- Site information/banner on top left -->
+    <h1><a href="/">FairXiv</a> <small>📢 Serving latest {{ totpapers }} Fair &amp; Ethical ML/AL papers 📢</small></h1>
+    <!--cs.[CV|CL|LG|AI|NE]/stat.ML-->
 
     <!-- User account information on top right -->
     <div id="userinfo">
       {% if not g.user %}
       <form action="{{ url_for('login') }}" method="post">
         User:
-        <input type="text" name="username" class="input-no-border">
+        <input type="text" name="username">
         Pass:
-        <input type="password" name="password" class="input-no-border">
+        <input type="password" name="password">
         <input type="submit" value="Login or Create" class="btn-fancy">
       </form>
       {% else %}
-      {{ g.user.username }}
-      <a href="{{ url_for('logout') }}">log out</a>
+      <p>
+        <a href="{{ url_for('account') }}">{{ g.user.username }}</a>
+        <a href="{{ url_for('logout') }}">log out</a>
+      </p>
+      <nav>
+        <a class="pagelink" id="tabfriends" href="/friends">Friends</a>
+        <a class="pagelink" id="tabdiscussions" href="/discussions">Discussions</a>
+        <a class="pagelink" id="tabrec" href="/recommend">Recommended</a>
+        <a class="pagelink" id="tablib" href="/library">Library</a>
+      </nav>
       {% endif %}
-    </div>
-
-    <!-- Site information/banner on top left -->
-    <div id="tittxt">
-      <h1><a href="/">FairXiv</a> <small>📢 Serving latest {{ totpapers }} Fair &amp; Ethical ML/AL papers 📢</small></h1>
-      Usability &amp; accessibility-first Arxiv UI by <a href="https://twitter.com/summerscope" target="_blank">@summerscope</a> <br />
-      A fork of <a href="http://www.arxiv-sanity.com/" target="_blank">Arxiv Sanity Preserver</a> by <a href="https://twitter.com/karpathy" target="_blank">@karpathy</a>
-      <!--cs.[CV|CL|LG|AI|NE]/stat.ML-->
     </div>
 
   </header>
@@ -255,7 +260,7 @@ $(document).ready(function(){
   {% endwith %}
   </div>
 
-  <div id="maindiv">
+  <main id="maindiv">
     <!-- contains the paper of interest -->
     <div id="rtable"></div>
     <!-- functionality to add new comments -->
@@ -298,7 +303,12 @@ $(document).ready(function(){
     <div id="discussion">
       <div style="padding:5px; margin-top:10px; font-size:20px;">Discussion:</div>
     </div>
-  </div>
+  </main>
+
+  <footer>
+    <p>Usability &amp; accessibility-first Arxiv UI by <a href="https://twitter.com/summerscope" target="_blank">@summerscope</a></p>
+    <p>A fork of <a href="http://www.arxiv-sanity.com/" target="_blank">Arxiv Sanity Preserver</a> by <a href="https://twitter.com/karpathy" target="_blank">@karpathy</a></p>
+  </footer>
 
 </body>
 

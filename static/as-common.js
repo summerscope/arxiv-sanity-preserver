@@ -102,12 +102,12 @@ function addPapers(num, dynamic) {
     pointer_ix++;
 
     var p = papers[ix];
-    var div = root.append('article').classed('apaper', true).attr('id', p.pid);
+    var div = root.append('article').attr('id', p.pid);
 
     // Generate OpenURL COinS metadata element -- readable by Zotero, Mendeley, etc.
     var ocoins_span = div.append('span').classed('Z3988', true).attr('title', build_ocoins_str(p));
 
-    var tdiv = div.append('header').classed('paperdesc', true);
+    var tdiv = div.append('summary').classed('paperdesc', true);
 
     // Save/Remove from library
     var lib_state_img = p.in_library === 1 ? 'remove' : 'add';
