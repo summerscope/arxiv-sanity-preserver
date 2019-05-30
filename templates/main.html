@@ -163,7 +163,7 @@ $(document).ready(function(){
       <!--cs.[CV|CL|LG|AI|NE]/stat.ML-->
 
       <!-- User account information on top right -->
-      <div id="userinfo">
+      <section>
         {% if not g.user %}
         <form action="{{ url_for('login') }}" method="post">
           User:
@@ -173,7 +173,7 @@ $(document).ready(function(){
           <input type="submit" value="Login or Create" class="btn-fancy">
         </form>
         {% else %}
-        <div class="user-pills">
+        <nav class="user-pills">
           <a href="{{ url_for('account') }}">
             <img src="static/user.svg" height="20px" /> 
             {{ g.user.username }}
@@ -182,15 +182,15 @@ $(document).ready(function(){
             <img src="static/sign-out.svg" height="20px" /> 
             Log out
           </a>
-        </div>
-        <nav>
-          <a class="pagelink" id="tabfriends" href="/friends">Friends</a>
-          <a class="pagelink" id="tabdiscussions" href="/discussions">Discussions</a>
-          <a class="pagelink" id="tabrec" href="/recommend">Recommended</a>
-          <a class="pagelink" id="tablib" href="/library">Library</a>
+        </nav>
+        <nav class="user-links">
+          <a id="tabfriends" href="/friends">Friends</a>
+          <a id="tabdiscussions" href="/discussions">Discussions</a>
+          <a id="tabrec" href="/recommend">Recommended</a>
+          <a id="tablib" href="/library">Library</a>
         </nav>
         {% endif %}
-      </div>
+      </section>
 
     </header>
 

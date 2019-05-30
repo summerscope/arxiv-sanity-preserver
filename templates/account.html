@@ -180,67 +180,75 @@ $(document).ready(function(){
 
 <body>
 
-  <header>
+  <div class="content">
+    <header>
 
-    <!-- Site information/banner on top left -->
-    <h1><a href="/">FairXiv</a> <small>📢 Serving latest {{ totpapers }} Fair &amp; Ethical ML/AL papers 📢</small></h1>
-    <!--cs.[CV|CL|LG|AI|NE]/stat.ML-->
+      <!-- Site information/banner on top left -->
+      <h1><a href="/">FairXiv</a> <small>📢 Serving latest {{ totpapers }} Fair &amp; Ethical ML/AL papers 📢</small></h1>
+      <!--cs.[CV|CL|LG|AI|NE]/stat.ML-->
 
-    <!-- User account information on top right -->
-    <div id="userinfo">
-      {% if not g.user %}
-      <form action="{{ url_for('login') }}" method="post">
-        User:
-        <input type="text" name="username">
-        Pass:
-        <input type="password" name="password">
-        <input type="submit" value="Login or Create" class="btn-fancy">
-      </form>
-      {% else %}
-      <p>
-        <a href="{{ url_for('account') }}">{{ g.user.username }}</a>
-        <a href="{{ url_for('logout') }}">log out</a>
-      </p>
-      <nav>
-        <a class="pagelink" id="tabfriends" href="/friends">Friends</a>
-        <a class="pagelink" id="tabdiscussions" href="/discussions">Discussions</a>
-        <a class="pagelink" id="tabrec" href="/recommend">Recommended</a>
-        <a class="pagelink" id="tablib" href="/library">Library</a>
-      </nav>
-      {% endif %}
-    </div>
-
-  </header>
-
-  <main id="maindiv">
-
-    {% if g.user %}
-    <div>
-      <h1>Friends</h1>
-      <div id="ffdesc">
-        You can follow your friends on arxiv-sanity. This will populate the "friends"
-        tab of arxiv-sanity, which shows recent papers sorted by how popular they are
-        with your friends. In the lists below, <span style="color:#090">green background</span> indicates an active connection,
-        and <span style="color:#f00">red background</span> indicates a pending connection.
-      </div>
-
-      <div id="followers" class='userlst'>
-      </div>
-
-      <div id="following" class='userlst'>
-      </div>
-
-      <div id="addfollowing">
-        Ask for permission to follow:
-        <form action="/requestfollow" method="post">
-          <input type="input" name="newf" value="" class="newf-input">
-          <input type="submit" value="Add" class="newf-btn" style="width:100px;">
+      <!-- User account information on top right -->
+      <section>
+        {% if not g.user %}
+        <form action="{{ url_for('login') }}" method="post">
+          User:
+          <input type="text" name="username">
+          Pass:
+          <input type="password" name="password">
+          <input type="submit" value="Login or Create" class="btn-fancy">
         </form>
+        {% else %}
+        <nav class="user-pills">
+          <a href="{{ url_for('account') }}">
+            <img src="static/user.svg" height="20px" /> 
+            {{ g.user.username }}
+          </a>
+          <a href="{{ url_for('logout') }}">
+            <img src="static/sign-out.svg" height="20px" /> 
+            Log out
+          </a>
+        </nav>
+        <nav class="user-links">
+          <a id="tabfriends" href="/friends">Friends</a>
+          <a id="tabdiscussions" href="/discussions">Discussions</a>
+          <a id="tabrec" href="/recommend">Recommended</a>
+          <a id="tablib" href="/library">Library</a>
+        </nav>
+        {% endif %}
+      </section>
+
+    </header>
+
+    <main id="maindiv">
+
+      {% if g.user %}
+      <div>
+        <h2>Friends</h2>
+        <div id="ffdesc">
+          You can follow your friends on arxiv-sanity. This will populate the "friends"
+          tab of arxiv-sanity, which shows recent papers sorted by how popular they are
+          with your friends. In the lists below, <span style="color:#090">green background</span> indicates an active connection,
+          and <span style="color:#f00">red background</span> indicates a pending connection.
+        </div>
+
+        <div id="followers" class='userlst'>
+        </div>
+
+        <div id="following" class='userlst'>
+        </div>
+
+        <div id="addfollowing">
+          Ask for permission to follow:
+          <form action="/requestfollow" method="post">
+            <input type="input" name="newf" value="" class="newf-input">
+            <input type="submit" value="Add" class="newf-btn" style="width:100px;">
+          </form>
+        </div>
       </div>
-    </div>
-    {% endif %}
-    
-  </main>
+      {% endif %}
+      
+    </main>
+  </div>
 
   <footer>
     <p>Usability &amp; accessibility-first Arxiv UI by <a href="https://twitter.com/summerscope" target="_blank">@summerscope</a></p>

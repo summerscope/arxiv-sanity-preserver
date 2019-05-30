@@ -216,94 +216,102 @@ $(document).ready(function(){
 
 <body>
 
-  <header>
+  <div class="content">
+    <header>
 
-    <!-- Site information/banner on top left -->
-    <h1><a href="/">FairXiv</a> <small>📢 Serving latest {{ totpapers }} Fair &amp; Ethical ML/AL papers 📢</small></h1>
-    <!--cs.[CV|CL|LG|AI|NE]/stat.ML-->
+      <!-- Site information/banner on top left -->
+      <h1><a href="/">FairXiv</a> <small>📢 Serving latest {{ totpapers }} Fair &amp; Ethical ML/AL papers 📢</small></h1>
+      <!--cs.[CV|CL|LG|AI|NE]/stat.ML-->
 
-    <!-- User account information on top right -->
-    <div id="userinfo">
-      {% if not g.user %}
-      <form action="{{ url_for('login') }}" method="post">
-        User:
-        <input type="text" name="username">
-        Pass:
-        <input type="password" name="password">
-        <input type="submit" value="Login or Create" class="btn-fancy">
-      </form>
-      {% else %}
-      <p>
-        <a href="{{ url_for('account') }}">{{ g.user.username }}</a>
-        <a href="{{ url_for('logout') }}">log out</a>
-      </p>
-      <nav>
-        <a class="pagelink" id="tabfriends" href="/friends">Friends</a>
-        <a class="pagelink" id="tabdiscussions" href="/discussions">Discussions</a>
-        <a class="pagelink" id="tabrec" href="/recommend">Recommended</a>
-        <a class="pagelink" id="tablib" href="/library">Library</a>
-      </nav>
-      {% endif %}
+      <!-- User account information on top right -->
+      <section>
+        {% if not g.user %}
+        <form action="{{ url_for('login') }}" method="post">
+          User:
+          <input type="text" name="username">
+          Pass:
+          <input type="password" name="password">
+          <input type="submit" value="Login or Create" class="btn-fancy">
+        </form>
+        {% else %}
+        <nav class="user-pills">
+          <a href="{{ url_for('account') }}">
+            <img src="static/user.svg" height="20px" /> 
+            {{ g.user.username }}
+          </a>
+          <a href="{{ url_for('logout') }}">
+            <img src="static/sign-out.svg" height="20px" /> 
+            Log out
+          </a>
+        </nav>
+        <nav class="user-links">
+          <a id="tabfriends" href="/friends">Friends</a>
+          <a id="tabdiscussions" href="/discussions">Discussions</a>
+          <a id="tabrec" href="/recommend">Recommended</a>
+          <a id="tablib" href="/library">Library</a>
+        </nav>
+        {% endif %}
+      </section>
+
+    </header>
+
+    <div id="flashesdiv">
+    {% with flashes = get_flashed_messages() %}
+        {% if flashes %}
+          <ul class="flashes">
+          {% for message in flashes %}
+            <li>{{ message }}
+          {% endfor %}
+          </ul>
+        {% endif %}
+    {% endwith %}
     </div>
 
-  </header>
-
-  <div id="flashesdiv">
-  {% with flashes = get_flashed_messages() %}
-      {% if flashes %}
-        <ul class="flashes">
-        {% for message in flashes %}
-          <li>{{ message }}
-        {% endfor %}
-        </ul>
-      {% endif %}
-  {% endwith %}
-  </div>
-
-  <main id="maindiv">
-    <!-- contains the paper of interest -->
-    <div id="rtable"></div>
-    <!-- functionality to add new comments -->
-    <div id="pitchin-cfa" style="background-color:#d7e5ff; padding: 10px; margin-top: 5px; border: 1px solid #b7c5e0; cursor: pointer;">Pitch in!</div>
-    <div id="pitchin" style="padding: 5px 5px 10px 5px; border-radius: 0px 0px 5px 5px; display: none;">
-      <div>
-        <div class="piitemdo">- <b>DO</b>: Add helpful links to code, project page, or related discussion.</div>
-        <div class="piitemdo">- <b>DO</b>: Offer <u>constructive</u> comments on this work.</div>
-        <div class="piitemdo">- <b>DON'T</b>: Post generic comments of little value, e.g. "this is great.", "nice", etc.</div>
-        <div class="piitemdo">- <b>DON'T</b>: Troll, call people names, be disrespectful. Pretty please.</div>
-      </div>
-      <div>
-        <!-- form for submitting a new discussion -->
-        <div style="border-top:1px solid black; margin-top:5px; padding-top:5px;">
-          <textarea id="post-text" rows="15" style="width: 98.5%;font-size: 16px;padding: 6px 6px;color: #333;line-height1.42857143:;border: 1px solid #ccc;box-shadow: inset 0 1px 1px rgba(0,0,0,.075);overflow: auto;border-radius: 4px;margin-top: 4px;"></textarea>
-          <div style="color:#555">(You can use $\LaTeX$ and markdown)</div>
+    <main id="maindiv">
+      <!-- contains the paper of interest -->
+      <div id="rtable"></div>
+      <!-- functionality to add new comments -->
+      <div id="pitchin-cfa" style="background-color:#d7e5ff; padding: 10px; margin-top: 5px; border: 1px solid #b7c5e0; cursor: pointer;">Pitch in!</div>
+      <div id="pitchin" style="padding: 5px 5px 10px 5px; border-radius: 0px 0px 5px 5px; display: none;">
+        <div>
+          <div class="piitemdo">- <b>DO</b>: Add helpful links to code, project page, or related discussion.</div>
+          <div class="piitemdo">- <b>DO</b>: Offer <u>constructive</u> comments on this work.</div>
+          <div class="piitemdo">- <b>DON'T</b>: Post generic comments of little value, e.g. "this is great.", "nice", etc.</div>
+          <div class="piitemdo">- <b>DON'T</b>: Troll, call people names, be disrespectful. Pretty please.</div>
         </div>
         <div>
-          <div id="preview-wrap" style="display:none; margin-bottom:5px;">
-            <div style="margin-top: 5px;padding-top: 5px;font-size: 20px;">Live preview:</div>
-            <div id="preview" style="background-color: #fff;padding: 5px;border: 1px solid #999;"></div>
+          <!-- form for submitting a new discussion -->
+          <div style="border-top:1px solid black; margin-top:5px; padding-top:5px;">
+            <textarea id="post-text" rows="15" style="width: 98.5%;font-size: 16px;padding: 6px 6px;color: #333;line-height1.42857143:;border: 1px solid #ccc;box-shadow: inset 0 1px 1px rgba(0,0,0,.075);overflow: auto;border-radius: 4px;margin-top: 4px;"></textarea>
+            <div style="color:#555">(You can use $\LaTeX$ and markdown)</div>
           </div>
-          <div style="background-color: #eee; padding:5px;">
-            <form action="">
-              On this paper's topic, I am:
-              <input type="radio" name="conf" value="expert"> expert
-              <input type="radio" name="conf" value="confident"> confident
-              <input type="radio" name="conf" value="uncertain"> uncertain
-              <br>
-              <input type="checkbox" name="anon" value="anon"> Post anonymously
-            </form>
+          <div>
+            <div id="preview-wrap" style="display:none; margin-bottom:5px;">
+              <div style="margin-top: 5px;padding-top: 5px;font-size: 20px;">Live preview:</div>
+              <div id="preview" style="background-color: #fff;padding: 5px;border: 1px solid #999;"></div>
+            </div>
+            <div style="background-color: #eee; padding:5px;">
+              <form action="">
+                On this paper's topic, I am:
+                <input type="radio" name="conf" value="expert"> expert
+                <input type="radio" name="conf" value="confident"> confident
+                <input type="radio" name="conf" value="uncertain"> uncertain
+                <br>
+                <input type="checkbox" name="anon" value="anon"> Post anonymously
+              </form>
+            </div>
+            <div><button id="btnpost" style="margin-top:5px;" class="ppbutton">Post</button></div>
+            <div id="errors-etc" style="display:none; background-color:#fee; padding:5px; margin-top:5px;"></div>
           </div>
-          <div><button id="btnpost" style="margin-top:5px;" class="ppbutton">Post</button></div>
-          <div id="errors-etc" style="display:none; background-color:#fee; padding:5px; margin-top:5px;"></div>
         </div>
       </div>
-    </div>
 
-    <!-- contains the discussion -->
-    <div id="discussion">
-      <div style="padding:5px; margin-top:10px; font-size:20px;">Discussion:</div>
-    </div>
-  </main>
+      <!-- contains the discussion -->
+      <div id="discussion">
+        <div style="padding:5px; margin-top:10px; font-size:20px;">Discussion:</div>
+      </div>
+    </main>
+  </div>
 
   <footer>
     <p>Usability &amp; accessibility-first Arxiv UI by <a href="https://twitter.com/summerscope" target="_blank">@summerscope</a></p>

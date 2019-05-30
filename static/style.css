@@ -196,49 +196,71 @@ h1 small {
 	line-height: 1.35;
 }
 
-header h1 a {
+h1 a {
 	text-decoration: none;
 	color: white;
 	font-weight: 700;
 }
 
-header h1 a:hover,
-header h1 a:active,
-header h1 a:focus {
+h1 a:hover,
+h1 a:active,
+h1 a:focus {
 	text-decoration: none;
 }
 
-header nav a:hover,
-header nav a:active,
-header nav a:focus {
+.user-links a,
+.user-pills a {
+	color: white;
+	text-decoration: none;
+	font-weight: 300;
+	transition: all 200ms ease;
+	font-size: 0.944444444em;
+	margin: 0 0.25em;
+}
+
+.user-links a:hover,
+.user-links a:active,
+.user-links a:focus {
 	-webkit-box-shadow: 0px 2px 0px 0px rgba(255,255,255,0.35);
 	-moz-box-shadow: 0px 2px 0px 0px rgba(255,255,255,0.35);
 	box-shadow: 0px 2px 0px 0px rgba(255,255,255,0.35);
 }
 
-header #userinfo a,
-header #userinfo a:hover,
-header #userinfo a:active,
-header #userinfo a:focus {
-	-webkit-box-shadow: none;
-	-moz-box-shadow: none;
-	box-shadow: none;
-	transition: all 200ms ease;
-	font-weight: 400;
-}
-
-header #userinfo a.tab-selected {
+.user-links a.tab-selected {
 	-webkit-box-shadow: 0px 2px 0px 0px rgba(255,255,255,1);
 	-moz-box-shadow: 0px 2px 0px 0px rgba(255,255,255,1);
 	box-shadow: 0px 2px 0px 0px rgba(255,255,255,1);
 }
 
-header .user-pills a {
-	border-radius: 10em;
-	border: 2px solid rgba(255,255,255,0.35);
-	padding: 0.25em;
+.user-pills {
+	margin-top: 1em;
 }
 
+.user-links {
+	margin-top: 0.5em;
+}
+
+.user-pills a {
+	border-radius: 10em;
+	border: 1px solid rgba(255,255,255,0.5);
+	padding: 0.25em 0.5em;
+	color: white;
+	display: inline-block;
+}
+
+.user-pills a:hover,
+.user-pills a:active,
+.user-pills a:focus {
+	border-color: rgba(255,255,255,1);
+}
+
+@media screen and (min-width: 768px) {
+	.user-links, 
+	.user-pills {
+		text-align: right;
+		white-space: nowrap;
+	}
+}
 
 header, footer {
 	background: #bc318e;
@@ -386,30 +408,11 @@ article {
 #search_hint a:hover{ color: #777; }
 #search_hint a:active{ color: #777; }
 
-#userinfo {
-	color: white;
-	font-size: 0.94444444444em;
-}
-
-#userinfo nav {
-	white-space: nowrap;
-}
-
-@media screen and (min-width: 768px) {
-	#userinfo {
-		text-align: right;
-	}
-}
-
 .btn-fancy {
 	background-color: #FFF;
 	border: none;
 	padding: 4px;
 	cursor: pointer;
-}
-
-#userinfo a {
-	margin: 0 0.25em;
 }
 
 footer a {
