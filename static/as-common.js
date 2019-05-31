@@ -136,10 +136,8 @@ function addPapers(num, dynamic) {
     else { var pdf_url = pdf_link + '.pdf'; }
 
     // show raw arxiv id
-
-    tdiv.append('div').classed('links', true)
-      .append('a', 'a').attr('href', p.link).attr('target', '_blank').html('Arxiv ' + p.pid)
-      .append('a').attr('href', pdf_url).attr('target', '_blank').html('Read the PDF');
+    tdiv.append('div').classed('links', true).append('a', 'a').attr('href', p.link).attr('target', '_blank').html('Arxiv ' + p.pid);
+    tdiv.append('a').attr('href', pdf_url).attr('target', '_blank').html('Read the PDF');
 
     if(p.comment) {
       tdiv.append('p').classed('ccs', true).html(p.comment);
@@ -172,17 +170,18 @@ function addPapers(num, dynamic) {
         .append('img').attr('src', p.img);
     }
 
+    // query filters  
     var ftdiv = div.append('nav');
-    ftdiv.append('div').classed('cs', true).html(build_categories_html(p.tags));
-    // action items for each paper
-
+    ftdiv.append('span').classed('cs', true).html(build_categories_html(p.tags));
+    
     // rank by tfidf similarity
-    ftdiv.append('div').classed('buttons', true);
-    var find_similar = ftdiv.append('button').classed('sim', true).attr('id', 'sim'+p.pid).html('show similar');
+    var find_similar = ftdiv.append('a').classed('cs', true).attr('id', 'sim'+p.pid).attr('href', p.pid).html('similar');
     find_similar.on('click', function(pid){ // attach a click handler to redirect for similarity search
       return function() { window.location.replace('/' + pid); }
     }(p.pid)); // closer over the paper id
 
+    // discuss paper
+    ftdiv.append('div').classed('buttons', true);
     // var review_span = ldiv.append('span').classed('sim', true).attr('style', 'margin-left:5px; padding-left: 5px; border-left: 1px solid black;').append('a').attr('href', 'http://www.shortscience.org/paper?bibtexKey='+p.pid).html('review');
     var discuss_text = p.num_discussion === 0 ? 'discuss' : 'discuss [' + p.num_discussion + ']';
     var discuss_color = p.num_discussion === 0 ? 'black' : 'red';
@@ -198,7 +197,7 @@ function addPapers(num, dynamic) {
     }
 
     if(typeof p.abstract !== 'undefined') {
-      var abdiv = div.append('div').classed('tt', true).html(p.abstract);
+      var abdiv = div.append('details').classed('tt', true).html(p.abstract).append('summary').html('Abstract');
       if(dynamic) {
         MathJax.Hub.Queue(["Typeset",MathJax.Hub,abdiv[0]]); //typeset the added paper
       }
