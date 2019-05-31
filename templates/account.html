@@ -189,35 +189,39 @@ $(document).ready(function(){
 
       <!-- User account information on top right -->
       <section>
-        {% if not g.user %}
-        <form action="{{ url_for('login') }}" method="post">
-          User:
-          <input type="text" name="username">
-          Pass:
-          <input type="password" name="password">
-          <input type="submit" value="Login or Create" class="btn-fancy">
-        </form>
-        {% else %}
-        <nav class="user-pills">
-          <a href="{{ url_for('account') }}">
-            <img src="static/user.svg" height="20px" /> 
-            {{ g.user.username }}
-          </a>
-          <a href="{{ url_for('logout') }}">
-            <img src="static/sign-out.svg" height="20px" /> 
-            Log out
-          </a>
-        </nav>
-        <nav class="user-links">
-          <a id="tabfriends" href="/friends">Friends</a>
-          <a id="tabdiscussions" href="/discussions">Discussions</a>
-          <a id="tabrec" href="/recommend">Recommended</a>
-          <a id="tablib" href="/library">Library</a>
-        </nav>
-        {% endif %}
-      </section>
+          {% if not g.user %}
+          <form class="user-login" action="{{ url_for('login') }}" method="post">
+            <div class="form-group">
+              <label for="userNm">User name</label> 
+              <input type="text" id="userNm" name="username">
+            </div>
+            <div class="form-group">
+              <label for="passWd">Password</label> 
+              <input type="password" name="password" id="passWd">
+            </div>
+            <input type="submit" value="Log in / Sign up" class="btn-fancy">
+          </form>
+          {% else %}
+          <nav class="user-pills">
+            <a href="{{ url_for('account') }}">
+              <img src="static/user.svg" /> 
+              {{ g.user.username }}
+            </a>
+            <a href="{{ url_for('logout') }}">
+              <img src="static/sign-out.svg" /> 
+              Log out
+            </a>
+          </nav>
+          <nav class="user-links">
+            <a id="tabfriends" href="/friends">Friends</a>
+            <a id="tabdiscussions" href="/discussions">Discussions</a>
+            <a id="tabrec" href="/recommend">Recommended</a>
+            <a id="tablib" href="/library">Library</a>
+          </nav>
+          {% endif %}
+        </section>
 
-    </header>
+      </header>
 
     <main id="maindiv">
 

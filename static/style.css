@@ -45,7 +45,16 @@ input[type="password"] {
 	padding: 0.4em 0.5em;
 	font-size: 0.888888888em;
 	border-radius: 0.35em;
-	border-color: rgba(0,0,0,0.35)
+	border-color: rgba(0,0,0,0.35);
+	border-width: 1px;
+}
+
+label {
+	display: block;
+}
+
+.form-group {
+	display: inline-block;
 }
 
 figure {
@@ -240,17 +249,33 @@ h1 a:focus {
 	margin-top: 0.5em;
 }
 
-.user-pills a {
+.user-login {
+	font-weight: 300;
+	margin-top: 0.5em;
+}
+
+.user-pills a,
+.user-login {
+	font-size: 80%;
+}
+
+.user-pills a,
+.user-login input[type="submit"] {
 	border-radius: 10em;
-	border: 1px solid rgba(255,255,255,0.5);
-	padding: 0.25em 0.5em;
+	border: 2px solid rgba(255,255,255,0.5);
+	padding: 0.5em 1em;
 	color: white;
 	display: inline-block;
+	background: transparent;
+	transition: all 200ms ease;
 }
 
 .user-pills a:hover,
 .user-pills a:active,
-.user-pills a:focus {
+.user-pills a:focus,
+.user-login input[type="submit"]:hover,
+.user-login input[type="submit"]:focus,
+.user-login input[type="submit"]:active {
 	border-color: rgba(255,255,255,1);
 }
 
@@ -259,6 +284,11 @@ h1 a:focus {
 	.user-pills {
 		text-align: right;
 		white-space: nowrap;
+	}
+	.user-login input[type="submit"] {
+		display: block;
+		margin-top: 0.5em;
+		/* margin-left: auto; */
 	}
 }
 
