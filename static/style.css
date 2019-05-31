@@ -34,17 +34,16 @@ p {
 button, input[type="submit"] {
 	background: white;
 	border: 2px solid #278aab;
-	font-size: 0.888888888em;
+	font-size: 1em;
 	color: #278aab;
 	padding: 0.4em 1em;
-	border-radius: 0.25em;
+	border-radius: 0.5em;
 }
 
 input[type="text"],
 input[type="password"] {
 	padding: 0.4em 0.5em;
-	font-size: 0.888888888em;
-	border-radius: 0.35em;
+	border-radius: 0.5em;
 	border-color: rgba(0,0,0,0.35);
 	border-width: 1px;
 }
@@ -174,6 +173,10 @@ figure {
 	color: #555;
 } */
 
+/***********
+HEADER
+***********/
+
 h1 {
 	font-size: 2.666666666666666667em;
 	line-height: 1;
@@ -203,6 +206,7 @@ h1 small {
 	text-shadow: none;
 	margin-top: 0.5em;
 	line-height: 1.35;
+	text-shadow: 0 2px 0 rgba(0,0,0,0.3);
 }
 
 h1 a {
@@ -217,15 +221,37 @@ h1 a:focus {
 	text-decoration: none;
 }
 
+.user-pills a,
+.user-login {
+	font-size: 0.77777777777em;
+}
+
 .user-links a,
 .user-pills a {
 	color: white;
 	text-decoration: none;
 	font-weight: 300;
 	transition: all 200ms ease;
-	font-size: 0.944444444em;
 	margin: 0 0.25em;
 }
+
+@media screen and (min-width: 768px) {
+	.user-links a:last-child,
+	.user-pills a:last-child{
+		margin-right: 0;
+	}	
+
+	.user-pills {
+		margin-top: 7px;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.user-links a {
+		margin: 0 1em;
+	}
+}
+
 
 .user-links a:hover,
 .user-links a:active,
@@ -241,33 +267,57 @@ h1 a:focus {
 	box-shadow: 0px 2px 0px 0px rgba(255,255,255,1);
 }
 
-.user-pills {
-	margin-top: 1em;
-}
-
 .user-links {
-	margin-top: 0.5em;
+	margin-top: 1em;
 }
 
 .user-login {
 	font-weight: 300;
-	margin-top: 0.5em;
 }
 
-.user-pills a,
-.user-login {
-	font-size: 80%;
+.user-login label {
+	text-shadow: 0 2px 0 rgba(0,0,0,0.3);
+}
+
+.user-login input[type="text"],
+.user-login input[type="password"]{
+	font-size: 1em;
+	background-color: rgba(155,155,155, 0.3);
+	border: none;
+	transition: all 200ms ease;
+	margin: 0.35em 0 0.65em;
+	-webkit-box-shadow: 0px -2px 0px 0px rgba(0,0,0,0.2), 0px 2px 0px 0px rgba(255,255,255,0.2);
+	-moz-box-shadow: 0px -2px 0px 0px rgba(0,0,0,0.2), 0px 2px 0px 0px rgba(255,255,255,0.2);
+	box-shadow: 0px -2px 0px 0px rgba(0,0,0,0.2), 0px 2px 0px 0px rgba(255,255,255,0.2);
+	color: white;
+}
+
+.user-login input[type="text"]:hover,
+.user-login input[type="password"]:hover {
+	-webkit-box-shadow: 0px -2px 0px 0px rgba(0,0,0,0.3), 0px 2px 0px 0px rgba(255,255,255,0.3);
+	-moz-box-shadow: 0px -2px 0px 0px rgba(0,0,0,0.3), 0px 2px 0px 0px rgba(255,255,255,0.3);
+	box-shadow: 0px -2px 0px 0px rgba(0,0,0,0.3), 0px 2px 0px 0px rgba(255,255,255,0.3);
+}
+
+.user-login input[type="text"]:focus,
+.user-login input[type="text"]:active,
+.user-login input[type="password"]:focus,
+.user-login input[type="password"]:active {
+	background-color: white;
+	color: black;
 }
 
 .user-pills a,
 .user-login input[type="submit"] {
-	border-radius: 10em;
+	border-radius: 0.5em;
 	border: 2px solid rgba(255,255,255,0.5);
 	padding: 0.5em 1em;
 	color: white;
 	display: inline-block;
 	background: transparent;
 	transition: all 200ms ease;
+	line-height: 1;
+	font-weight: 400;
 }
 
 .user-pills a:hover,
@@ -279,22 +329,28 @@ h1 a:focus {
 	border-color: rgba(255,255,255,1);
 }
 
+.user-pills a img {
+	height: 16px;
+}
+
 @media screen and (min-width: 768px) {
 	.user-links, 
 	.user-pills {
 		text-align: right;
 		white-space: nowrap;
 	}
+
+	.user-login {
+		white-space: nowrap;
+	}
 	.user-login input[type="submit"] {
 		display: block;
-		margin-top: 0.5em;
-		/* margin-left: auto; */
 	}
 }
 
 header, footer {
-	background: #bc318e;
-	background: linear-gradient(58deg, rgba(188,49,142,1) 0%, rgba(198,0,0,1) 100%);
+	background: #c2137c;
+	background: linear-gradient(58deg, rgba(194,19,124,1) 0%, rgba(198,0,0,1) 100%);
 	color: white;
 	padding: 1em;
 	text-align: center;
