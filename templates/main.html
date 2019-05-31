@@ -135,6 +135,11 @@ $(document).ready(function(){
     xb.click(function(){ $("#banner").slideUp('fast'); })
   }
 
+  var xm = $("#xmessage");
+  if(xm.length !== 0) {
+    xm.click(function(){ $("#flashesdiv").slideUp('fast'); })
+  }
+
   // in top tab: color current choice
   if( render_format === 'recent') { d3.select('#tabrecent').classed('tab-selected', true); }
   if( render_format === 'top') { d3.select('#tabtop').classed('tab-selected', true); }
@@ -198,18 +203,20 @@ $(document).ready(function(){
 
     </header>
 
-    <div id="flashesdiv">
-      {% with flashes = get_flashed_messages() %}
-        {% if flashes %}
+    {% with flashes = get_flashed_messages() %}
+      {% if flashes %}
+        <div id="flashesdiv">
           <ul class="flashes">
           {% for message in flashes %}
-            <li>{{ message }}
+            <li>
+              <div style="float:right;cursor:pointer;" id="xmessage">X</div> 
+              {{ message }}
           {% endfor %}
           </ul>
-        {% endif %}
-      {% endwith %}
-    </div>
-
+        </div>
+      {% endif %}
+    {% endwith %}
+    
     <!-- {% if render_format == "recent" and g.user.username is not defined %}
     <div id="banner">
       <div style="float:right;cursor:pointer;" id="xbanner">X</div>
@@ -259,7 +266,7 @@ $(document).ready(function(){
   </div>
 
   <footer>
-    <p>Usability &amp; accessibility-first Arxiv UI by <a href="https://twitter.com/summerscope" target="_blank">@summerscope</a></p>
+    <p>A friendlier Arxiv UI by <a href="https://twitter.com/summerscope" target="_blank">@summerscope</a></p>
     <p>A fork of <a href="http://www.arxiv-sanity.com/" target="_blank">Arxiv Sanity Preserver</a> by <a href="https://twitter.com/karpathy" target="_blank">@karpathy</a></p>
   </footer>
 

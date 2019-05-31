@@ -259,17 +259,17 @@ $(document).ready(function(){
 
     </header>
 
-    <div id="flashesdiv">
     {% with flashes = get_flashed_messages() %}
-        {% if flashes %}
+      {% if flashes %}
+        <div id="flashesdiv">
           <ul class="flashes">
           {% for message in flashes %}
             <li>{{ message }}
           {% endfor %}
           </ul>
-        {% endif %}
+        </div>
+      {% endif %}
     {% endwith %}
-    </div>
 
     <main id="maindiv">
       <!-- contains the paper of interest -->
@@ -318,7 +318,7 @@ $(document).ready(function(){
   </div>
 
   <footer>
-    <p>Usability &amp; accessibility-first Arxiv UI by <a href="https://twitter.com/summerscope" target="_blank">@summerscope</a></p>
+    <p>A friendlier Arxiv UI by <a href="https://twitter.com/summerscope" target="_blank">@summerscope</a></p>
     <p>A fork of <a href="http://www.arxiv-sanity.com/" target="_blank">Arxiv Sanity Preserver</a> by <a href="https://twitter.com/karpathy" target="_blank">@karpathy</a></p>
   </footer>
 
