@@ -126,9 +126,9 @@ function addPapers(num, dynamic) {
 
     // Paper publish date
     tdiv.append('time').classed('ds', true).html(p.published_time);
-    if(p.originally_published_time !== p.published_time) {
-      tdiv.append('time').classed('ds2', true).html(' (v1: ' + p.originally_published_time + ')');
-    }
+    // if(p.originally_published_time !== p.published_time) {
+    //   tdiv.append('time').classed('ds2', true).html(p.originally_published_time + ' v1');
+    // }
 
     // access PDF of the paper
     var pdf_link = p.link.replace("abs", "pdf"); // convert from /abs/ link to /pdf/ link. url hacking. slightly naughty
@@ -136,7 +136,6 @@ function addPapers(num, dynamic) {
     else { var pdf_url = pdf_link + '.pdf'; }
 
     // show raw arxiv id
-    tdiv.append('p')
     tdiv.append('a').classed('links', true).attr('href', p.link).attr('target', '_blank').html('Arxiv ' + p.pid);
     tdiv.append('a').classed('links', true).attr('href', pdf_url).attr('target', '_blank').html('Full PDF');
 
