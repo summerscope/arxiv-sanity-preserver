@@ -139,8 +139,9 @@ a.cs.selected {
 .tt {
 	background-color: #f2f8f9;
 	line-height: 1.5;
-	padding: 1.5em;
+	padding: 1em;
 	display: block;
+	margin-top: 1.25em;
 }
 @media screen and (min-width: 1400px) {
 	.tt {
@@ -841,6 +842,15 @@ ul.flashes li {
 
 .links {
 	font-size: 0.944444444em;
+	margin: 0 0.5em;
+}
+
+.links:first-child {
+	margin-left: 0;
+}
+
+.links:last-child {
+	margin-right: 0;
 }
 
 /* Hidden visually for screen readers
