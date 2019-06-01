@@ -90,7 +90,7 @@ function addPapers(num, dynamic) {
     if(ix >= papers.length) {
       if(!showed_end_msg) {
         if (ix >= numresults){
-          var msg = 'Results complete.';
+          var msg = 'No more papers that match your search.';
         } else {
           var msg = 'You hit the limit of number of papers to show in one result.';
         }

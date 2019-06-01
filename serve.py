@@ -634,7 +634,7 @@ def login():
 @app.route('/logout')
 def logout():
   session.pop('user_id', None)
-  flash('You were logged out')
+  flash('You have successfully logged out')
   return redirect(url_for('intmain'))
 
 # -----------------------------------------------------------------------------

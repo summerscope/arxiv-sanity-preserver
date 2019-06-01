@@ -13,6 +13,10 @@ body {
 	line-height: 1.35;
 }
 
+* {
+	box-sizing: border-box;
+}
+
 .content {
   flex: 1 0 auto;
 }
@@ -392,7 +396,7 @@ footer {
 article {
 	background-color: white;
 	position: relative;
-	width: calc(100% - 5em);
+	width: calc(100% - 1em);
 	margin: 0.5em 0;
 	font-size: 0.9444444444444em;
 	padding: 3em 2em 2em 2em;
@@ -407,20 +411,20 @@ article {
 
 @media screen and (min-width: 900px){
 	article {
-		width: calc(50% - 5em);
+		width: calc(50% - 1em);
 	}
 }
 
 @media screen and (min-width: 1500px){
 	article {
-		width: calc(33.333333333% - 5em);
+		width: calc(33.333333333% - 1em);
 		font-size: 1em;
 	}
 }
 
 @media screen and (min-width: 2200px){
 	article {
-		width: calc(25% - 5em);
+		width: calc(25% - 1em);
 	}
 }
 
@@ -477,7 +481,7 @@ article {
 	flex-grow: 2;
 }
 
-.msg {
+.msg, .paperdivider {
 	background-color: #EEF;
 	background: linear-gradient(58deg, rgba(188,49,142,0.1) 0%, rgba(198,0,0,0.1) 100%);
 	padding: 10px;
@@ -485,16 +489,9 @@ article {
 	margin-top: 2px;
 	margin: 0;
 	border: 1px solid rgba(188,49,142,0.2);
+	width: 100%;
 }
-.paperdivider {
-	background-color: #EEF;
-	padding: 10px;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	border-bottom: 1px solid #CCD;
-	border-top: 1px solid #CCD;
-	color: #005;
-}
+
 #search_hint {
 	text-align: center;
 	margin-bottom: 10px;
@@ -688,6 +685,7 @@ ul.flashes li {
 #sys-messages {
 	margin-bottom: 0.75em;
 }
+
 #recommend-time-choice {
 	margin-bottom: 0.75em;
 }
