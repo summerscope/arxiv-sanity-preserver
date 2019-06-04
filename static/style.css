@@ -428,6 +428,35 @@ article {
 	}
 }
 
+/* Filter by */
+#filters {
+	text-transform: uppercase;
+	color: gray;
+	font-weight: bold;
+	align-items: flex-end;	
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	margin-bottom: 1em;
+}
+
+#filters a {
+	font-size: 0.94444444444em;
+}
+
+#filters h2 {
+	display: inline-block;
+	margin: 0 0.1em 0 0;
+	color: #333;
+	font-size: 1.16666666667em;
+}
+
+#filters .tab-selected {
+	font-weight: bold;
+	color: #c2137c;
+}
+
+
 /* .animg {
 	text-align: left;
 	height: 156px;
@@ -466,14 +495,21 @@ article {
 }*/
 
 #qfield {
-  width: calc(100% - 4.5em);
-	margin: 0 1em;
-  padding-left: 1.5em;
+	width: 100%;
+	margin: 1em 0;
+  padding-left: 32px;
   background-image:url('/static/search.png');
 	background-repeat:no-repeat;
-	background-position:left center;
+	background-position: 4px center;
 	background-size: 24px;
 	font-size: 1em;
+}
+
+@media screen and (min-width: 768px) {
+	#qfield {
+		width: calc(100% - 2em);
+		margin: 0 0 0 2em;
+	}
 }
 
 #sbox {
@@ -611,19 +647,6 @@ ul.flashes li {
 	white-space: pre;
 }
 
-#pagebar {
-	/* width: 970px; */
-	padding: 10px 15px 0px 15px;
-	margin: 0 auto;
-	align-items: flex-end;
-	background-color: #d8d8d8;
-	display: flex;
-}
-
-.pagelink {
-	display: inline-block;
-}
-
 .checkbx {
 	padding:  0.8888em 1.25em;
 	position: relative;
@@ -637,40 +660,6 @@ ul.flashes li {
 
 .checkbx label {
 	font-size: 0.9444444444444em;
-}
-
-#pagebar a {
-	display: inline-block;
-	margin-right: 3px;
-	font-size: 16px;
-	border-left: 1px solid #b4b4b4;
-	border-right: 1px solid #b4b4b4;
-	border-top: 1px solid #b4b4b4;
-	padding:  0.8888em 1.25em;
-	background-color: #e8e8e8;
-	border-radius: 0.5em 0.5em 0 0;
-	font-weight: 700;
-	-webkit-box-shadow: 0px -3px 5px 0px rgba(0,0,0,0.05);
-	-moz-box-shadow: 0px -3px 5px 0px rgba(0,0,0,0.05);
-	box-shadow: 0px -3px 5px 0px rgba(0,0,0,0.05);
-	text-decoration: none;
-	color: #555;
-	transition: all 200ms ease;
-}
-
-#pagebar a:hover,
-#pagebar a:active,
-#pagebar a:focus {
-	color: #000;
-	background-color: #F7F7F7;
-}
-
-#pagebar a.tab-selected {
-	background-color: #F7F7F7;
-	color: #9a0061;
-	border-left: 1px solid #AAA;
-	border-right: 1px solid #AAA;
-	border-top: 1px solid #AAA;
 }
 
 .centerdiv {

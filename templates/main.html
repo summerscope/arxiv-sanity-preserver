@@ -162,9 +162,8 @@ $(document).ready(function(){
 
   <div class="content">
     <header>
-
       <!-- Site information/banner on top left -->
-      <h1><a href="/">FairXiv</a> <small>📢&nbsp;Serving latest {{ totpapers }} Fair &amp; Ethical ML/AL&nbsp;papers&nbsp;📢</small></h1>
+      <h1><a href="/">FairXiv</a> <small>📢&nbsp;{{ totpapers }} latest ML/AI + Fairness/Ethics Arxiv&nbsp;papers&nbsp;📢</small></h1>
       <!--cs.[CV|CL|LG|AI|NE]/stat.ML-->
 
       <!-- User account information on top right -->
@@ -217,43 +216,52 @@ $(document).ready(function(){
       {% endif %}
     {% endwith %}
     
-    <!-- {% if render_format == "recent" and g.user.username is not defined %}
-    <div id="banner">
-      <div style="float:right;cursor:pointer;" id="xbanner">X</div>
-      New to arxiv-sanity? Check out the <a href="https://youtu.be/S2GY3gh6qC8" target="_blank">introduction video</a>.
-    </div>
+    <!-- Old intro banner
+    {% if render_format == "recent" and g.user.username is not defined %}
+      <div id="banner">
+        <div style="float:right;cursor:pointer;" id="xbanner">X</div>
+        New to arxiv-sanity? Check out the <a href="https://youtu.be/S2GY3gh6qC8" target="_blank">introduction video</a>.
+      </div>
     {% endif %} -->
 
+    <!-- Old support message
     {% if show_prompt == "yes" %}
-    <div id="prompt" style="background-color:#f6ff7a; padding:10px; width:980px; margin-left:auto; margin-right:auto; font-size:14px;">
-    Hey there {{ g.user.username }}, sorry to interrupt. Arxiv-sanity costs a non-negligible amount of money to host. 
-    If you love the site, please consider pitching in:
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" style="display:inline-block;">
-      <input type="hidden" name="cmd" value="_s-xclick">
-      <input type="hidden" name="hosted_button_id" value="DRW9PQ2J3U3RJ">
-      <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" style="display:inline-block;height:14px;">
-      <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-      </form>
-    To nuke this message away for a long time click <span id="goaway" style="text-decoration: underline;cursor: pointer;">here</span>.
-    </div>
-    {% endif %}
-
-    <nav id="pagebar">
-      <a class="pagelink" id="tabrecent" href="/">Most recent</a>
-      <a class="pagelink" id="tabtop" href="/top">Top recent</a>
-      <a class="pagelink" id="tabtwtr" href="/toptwtr">Top hype</a>
-      <div id="sbox">
-        <form action="/search" method="get">
-          <input name="q" type="text" id="qfield">
+      <div id="prompt" style="background-color:#f6ff7a; padding:10px; width:980px; margin-left:auto; margin-right:auto; font-size:14px;">
+      Hey there {{ g.user.username }}, sorry to interrupt. Arxiv-sanity costs a non-negligible amount of money to host. 
+      If you love the site, please consider pitching in:
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" style="display:inline-block;">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="DRW9PQ2J3U3RJ">
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" style="display:inline-block;height:14px;">
+        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
         </form>
-        <div id="search_hint"></div>
+      To nuke this message away for a long time click <span id="goaway" style="text-decoration: underline;cursor: pointer;">here</span>.
       </div>
-    </nav>
+    {% endif %} 
+    -->
 
-    <!-- this div will be rendered into dynamcially at init with JS --> 
+    <!-- this div will be rendered into dynamically at init with JS --> 
     <main id="maindiv">
-      <aside id="sys-messages"></aside>
+      <nav id="filters">
+        <div>
+          <h2>Sort by</h2> 
+          <a id="tabrecent" href="/">New</a> / 
+          <a id="tabtop" href="/top">Popular</a> / 
+          <a id="tabtwtr" href="/toptwtr">Twitter</a>
+        </div>
+        <div id="sbox">
+          <form action="/search" method="get">
+            <input name="q" type="text" id="qfield" placeholder="Search Arxiv papers...">
+          </form>
+          <!-- Todo: implement search hints 
+            <div id="search_hint"></div> 
+          -->
+        </div>
+      </nav>
+
       <nav id="recommend-time-choice"></nav>
+
+      <aside id="sys-messages"></aside>
 
       <div id="rtable"></div>
 
