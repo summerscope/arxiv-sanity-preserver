@@ -671,37 +671,54 @@ ul.flashes li {
 	border-right: solid 1px #D6D3C5;
 }
 
-#sys-messages {
-	margin-bottom: 0.75em;
-}
-
+#sys-messages,
 #recommend-time-choice {
-	margin-bottom: 0.75em;
+	margin-bottom: 1em;
 }
 
-#recommend-time-choice a:link{ text-decoration: none; color: #338;}
-#recommend-time-choice a:visited{ text-decoration: none; color: #338;}
-#recommend-time-choice a:hover{ text-decoration: none; color: #338;}
-#recommend-time-choice a:active{ text-decoration: none; color: #338;}
 .timechoice {
-	display: inline-block;
-	background-color: #EEE;
-	padding: 10px;
-	border-radius: 5px;
-	margin-right: 5px;
+	margin-right: 1em;
 }
-.timechoice-selected {
-	background-color: #CCE;
+
+#recommend-time-choice a {
+	transition: all 200ms ease;
 }
-.vchoice {
-	display: inline-block;
-	background-color: #EEE;
-	padding: 10px;
-	border-radius: 5px;
-	margin-right: 5px;
+
+#recommend-time-choice a:hover,
+#recommend-time-choice a:focus,
+#recommend-time-choice a:active {
+	text-decoration: none;
+	color: #007399;
 }
-.vchoice-selected {
-	background-color: #CEC;
+
+#recommend-time-choice a.vchoice-selected:hover,
+#recommend-time-choice a.timechoice-selected:hover,
+#recommend-time-choice a.vchoice-selected:focus,
+#recommend-time-choice a.timechoice-selected:focus,
+#recommend-time-choice a.vchoice-selected:active,
+#recommend-time-choice a.timechoice-selected:active {
+	text-decoration: none;
+	color: #99005c;
+}
+
+#recommend-time-choice a:before{
+	font-size: 1.25em;
+	padding-right: 0.1em;
+}
+
+a.vchoice:before,
+a.timechoice:before {
+	content: "☐";
+}
+
+a.vchoice-selected,
+a.timechoice-selected {
+	color: #c2137c;
+}
+
+a.vchoice-selected:before,
+a.timechoice-selected:before {
+	content: "☑";
 }
 
 .fdivider {

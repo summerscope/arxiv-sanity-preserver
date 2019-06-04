@@ -96,12 +96,11 @@ $(document).ready(function(){
     var elt = d3.select('#recommend-time-choice');
     var vflink = vf === 'all' ? '1' : 'all'; // toggle only showing v1 or not
     if(render_format === 'recent') {
-      var aelt = elt.append('a').attr('href', '/'+link_endpoint+'?'+'&vfilter='+vflink); // leave out timefilter from this page
+      var aelt = elt.append('a').classed('vchoice', true).attr('href', '/'+link_endpoint+'?'+'&vfilter='+vflink).html('Only show v1'); // leave out timefilter from this page
     } else {
-      var aelt = elt.append('a').attr('href', '/'+link_endpoint+'?'+'timefilter='+time_range+'&vfilter='+vflink);
+      var aelt = elt.append('a').classed('vchoice', true).attr('href', '/'+link_endpoint+'?'+'timefilter='+time_range+'&vfilter='+vflink).html('Only show v1');
     }
-    var delt = aelt.append('div').classed('vchoice', true).html('Only show v1');
-    if(vf === '1') { delt.classed('vchoice-selected', true); }
+    if(vf === '1') { aelt.classed('vchoice-selected', true); }
   }
 
   // time choices for recommend/top
@@ -111,9 +110,8 @@ $(document).ready(function(){
     elt.append('div').classed('fdivider', true).html('|');
     for(var i=0;i<time_ranges.length;i++) {
       var time_range = time_ranges[i];
-      var aelt = elt.append('a').attr('href', '/'+link_endpoint+'?'+'timefilter='+time_range+'&vfilter='+vf);
-      var delt = aelt.append('div').classed('timechoice', true).html(time_txt[time_range]);
-      if(tf == time_range) { delt.classed('timechoice-selected', true); } // also render as chosen
+      var aelt = elt.append('a').classed('timechoice', true).attr('href', '/'+link_endpoint+'?'+'timefilter='+time_range+'&vfilter='+vf).html(time_txt[time_range]);
+      if(tf == time_range) { aelt.classed('timechoice-selected', true); } // also render as chosen
     }
   }
 
@@ -124,9 +122,8 @@ $(document).ready(function(){
     var elt = d3.select('#recommend-time-choice');
     for(var i=0;i<time_ranges.length;i++) {
       var time_range = time_ranges[i];
-      var aelt = elt.append('a').attr('href', '/'+link_endpoint+'?'+'timefilter='+time_range);
-      var delt = aelt.append('div').classed('timechoice', true).html(time_txt[time_range]);
-      if(tf == time_range) { delt.classed('timechoice-selected', true); } // also render as chosen
+      var aelt = elt.append('a').classed('timechoice', true).attr('href', '/'+link_endpoint+'?'+'timefilter='+time_range).html(time_txt[time_range]);
+      if(tf == time_range) { aelt.classed('timechoice-selected', true); } // also render as chosen
     }
   }
 
@@ -208,7 +205,7 @@ $(document).ready(function(){
           <ul class="flashes">
           {% for message in flashes %}
             <li>
-              <div style="float:right;cursor:pointer;" id="xmessage">X</div> 
+              <div style="float:right;cursor:pointer;" id="xmessage">✖</div>
               {{ message }}
           {% endfor %}
           </ul>
