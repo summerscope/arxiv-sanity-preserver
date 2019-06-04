@@ -181,7 +181,7 @@ function addPapers(num, dynamic) {
     }(p.pid)); // closer over the paper id
 
     // discuss paper
-    ftdiv.append('a').classed('cs', true).attr('href', 'discuss?id='+strip_version(p.pid)).html('Discuss');
+    // ftdiv.append('a').classed('cs', true).attr('href', 'discuss?id='+strip_version(p.pid)).html('Discuss');
 
     // in friends tab, list users who the user follows who had these papers in libary
     if(render_format === 'friends') {
