@@ -96,9 +96,11 @@ $(document).ready(function(){
     var elt = d3.select('#recommend-time-choice');
     var vflink = vf === 'all' ? '1' : 'all'; // toggle only showing v1 or not
     if(render_format === 'recent') {
-      var aelt = elt.append('a').classed('vchoice', true).attr('href', '/'+link_endpoint+'?'+'&vfilter='+vflink).html('Only show v1'); // leave out timefilter from this page
+      elt.append('h3').html('Version');
+      var aelt = elt.append('a').classed('vchoice', true).attr('href', '/'+link_endpoint+'?'+'&vfilter='+vflink).html('Version 1'); // leave out timefilter from this page
     } else {
-      var aelt = elt.append('a').classed('vchoice', true).attr('href', '/'+link_endpoint+'?'+'timefilter='+time_range+'&vfilter='+vflink).html('Only show v1');
+      elt.append('h3').html('Version');
+      var aelt = elt.append('a').classed('vchoice', true).attr('href', '/'+link_endpoint+'?'+'timefilter='+time_range+'&vfilter='+vflink).html('Version 1');
     }
     if(vf === '1') { aelt.classed('vchoice-selected', true); }
   }
@@ -107,9 +109,10 @@ $(document).ready(function(){
   if(render_format === 'recommend' || render_format === 'top' || render_format === 'friends') {
     // insert time filtering options for these two views
     var elt = d3.select('#recommend-time-choice');
-    elt.append('div').classed('fdivider', true).html('|');
+    elt.append('h3').html('Timeframe');
     for(var i=0;i<time_ranges.length;i++) {
       var time_range = time_ranges[i];
+      
       var aelt = elt.append('a').classed('timechoice', true).attr('href', '/'+link_endpoint+'?'+'timefilter='+time_range+'&vfilter='+vf).html(time_txt[time_range]);
       if(tf == time_range) { aelt.classed('timechoice-selected', true); } // also render as chosen
     }
@@ -120,6 +123,7 @@ $(document).ready(function(){
     var tf = QueryString.timefilter; if(typeof tf === 'undefined') { tf = 'day'; } // default here is day
     var time_ranges = ['day', 'week', 'month'];
     var elt = d3.select('#recommend-time-choice');
+    elt.append('h3').html('Timeframe');
     for(var i=0;i<time_ranges.length;i++) {
       var time_range = time_ranges[i];
       var aelt = elt.append('a').classed('timechoice', true).attr('href', '/'+link_endpoint+'?'+'timefilter='+time_range).html(time_txt[time_range]);
@@ -177,6 +181,10 @@ $(document).ready(function(){
 
       <!-- User account information on top right -->
       <section>
+        <nav class="extra-links">
+          <a href="/about">About</a> 
+          <a href="https://github.com/summerscope/arxiv-sanity-preserver" target="_blank">Github</a>
+        </nav>
         {% if not g.user %}
         <form class="user-login" action="{{ url_for('login') }}" method="post">
           <div class="form-group">
@@ -254,14 +262,12 @@ $(document).ready(function(){
 
       <div class="top9238">
         <nav id="filters">
-          <div>
-            <h2>Sort by</h2> 
-            <a id="tabrecent" href="/">New</a> / 
-            <a id="tabtop" href="/top">Popular</a> / 
-            <a id="tabtwtr" href="/toptwtr">Twitter</a>
-          </div>
+          <h2>Sort by</h2> 
+          <a id="tabrecent" href="/">New</a> / 
+          <a id="tabtop" href="/top">Popular</a> / 
+          <a id="tabtwtr" href="/toptwtr">Twitter</a>
         </nav>
-        <nav class="extra-links">About &bull; Github</nav>
+        <div>placeholder</div>
       </div>
         
       <div class="top-stuff">    

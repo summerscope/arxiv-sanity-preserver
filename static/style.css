@@ -255,6 +255,10 @@ h1 a:focus {
 	font-size: 0.77777777777em;
 }
 
+.user-links a {
+	font-size: 0.88888888em;
+}
+
 .user-links a,
 .user-pills a {
 	color: white;
@@ -389,6 +393,7 @@ header, footer {
 		text-align: left;
 		display: flex;
 		justify-content: space-between;
+		align-items: flex-end;
 	}
 }
 
@@ -443,7 +448,6 @@ article {
 	text-transform: uppercase;
 	color: gray;
 	font-weight: bold;
-	order: 1;
 }
 
 #filters a {
@@ -453,8 +457,8 @@ article {
 #filters h2 {
 	display: inline-block;
 	margin: 0 0.1em 0 0;
-	color: #666;
-	font-size: 1em;
+	color: #555;
+	font-size: 1.11111111111em;
 }
 
 #filters .tab-selected {
@@ -526,21 +530,6 @@ article {
 		width: 420px;
 		margin: 0;
 	}
-}
-
-.paperdivider {
-	background-color: #EEF;
-	background: linear-gradient(58deg, rgba(188,49,142,0.1) 0%, rgba(198,0,0,0.1) 100%);
-	padding: 10px;
-	border-radius: 0.25em;
-	margin-top: 2px;
-	margin: 0;
-	border: 1px solid rgba(188,49,142,0.2);
-	width: 100%;
-}
-
-.paperdivider {
-	margin: 0 0 1em 1em;
 }
 
 #search_hint {
@@ -691,11 +680,25 @@ ul.flashes li {
 	/* outline: 1px solid red; */
 }
 
+#recommend-time-choice h3 {
+	margin: 1em 0 0 0;
+	padding-bottom: 2px;
+	color: #555;
+	text-transform: uppercase;
+	font-size: 1em;
+	font-weight: 700;
+	font-size: 0.8333333333em;
+	border-bottom: 3px solid rgba(0,0,0,0.1);
+}
 .extra-links {
-	order: 0;
 	margin-bottom: 1em;
 	text-align: center;
-	outline: 1px solid red;
+	font-size: 0.88888888em;
+}
+
+.extra-links a {
+	margin: 0 0.5em;
+	color: white;
 }
 
 .top9238 {
@@ -704,10 +707,8 @@ ul.flashes li {
 }
 
 @media screen and (min-width: 768px) {
-
 	.extra-links {
-		order: 2;
-		margin-bottom: 0;
+		text-align: right;
 	}
 
 	.top-stuff {
@@ -718,7 +719,7 @@ ul.flashes li {
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
-		outline: 1px dashed royalblue;
+		/* outline: 1px dashed royalblue; */
 	}
 
 	#recommend-time-choice {
@@ -734,6 +735,7 @@ ul.flashes li {
 
 #recommend-time-choice a {
 	transition: all 200ms ease;
+	font-size: 0.8333333333em;
 }
 
 #recommend-time-choice a:hover,
@@ -914,7 +916,7 @@ a.timechoice-selected:before {
 	display: flex;
 	flex-flow: row wrap;
 	align-items: flex-start;
-	margin-top: 0.5em;
+	margin-top: 1em;
 	/* outline: 1px solid green; */
 }
 

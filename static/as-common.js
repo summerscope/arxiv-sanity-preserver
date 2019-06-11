@@ -229,7 +229,7 @@ function addPapers(num, dynamic) {
 
     if(render_format == 'paper' && ix === 0) {
       // lets insert a divider/message
-      root.append('div').classed('paperdivider', true).html('Most similar papers:');
+      root.append('div').classed('msg', true).html('Most similar papers:');
     }
   }
 

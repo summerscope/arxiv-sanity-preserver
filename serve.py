@@ -280,6 +280,11 @@ def discuss():
   ctx = default_context(papers, render_format='default', comments=comms, gpid=pid, tags=TAGS, tag_counts=tag_counts)
   return render_template('discuss.html', **ctx)
 
+@app.route('/about')
+def about():
+  ctx = default_context([])
+  return render_template('about.html', **ctx)
+
 @app.route('/comment', methods=['POST'])
 def comment():
   """ user wants to post a comment """
