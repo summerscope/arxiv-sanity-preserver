@@ -1,0 +1,196 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>FairXiv</title>
+
+<!-- CSS -->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700,700i&display=swap" rel="stylesheet">
+
+
+<!-- Favicon -->
+<link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}" />
+
+<!-- JS -->
+<script src="{{ url_for('static', filename='jquery-1.8.3.min.js') }}"></script>
+<script src="{{ url_for('static', filename='d3.min.js') }}"></script>
+<script src="{{ url_for('static', filename='as-common.js') }}"></script>
+
+<!-- Google Analytics JS -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-3698471-25', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<script>
+var username = "{{ g.user.username }}";
+var followers = [];
+var following = [];
+
+function populateList(lstid, msg, lst) {
+
+  var div = d3.select('#'+lstid);
+  var n = lst.length;
+  div.append('div').classed('userlst-title', true).html(n + msg);
+  if(n === 0) {
+    var fd = div.append('div').classed('user-li', true).html('None so far.');
+    fd.classed('li-no-border', true);
+  } else {
+    for(var i=0;i<n;i++) {
+      var f = lst[i];
+      
+      var fd = div.append('div').classed('user-li', true);
+      if(f.active === 1){ fd.classed('li-active', true);
+      } else { fd.classed('li-inactive', true); }
+
+      var fdx = fd.append('div').classed('fdx', true).html('X');
+
+      // attach event handler to X, to remove this user
+      var jfd = $(fd.node());
+      var jfdx = $(fdx.node());
+      var request_data = { user:f.user, lst:lstid };
+      jfdx.on('click', function(rootnode, jdict) {
+        return function() {
+          $.post("/removefollow", jdict).done(function(elt){
+            return function(data){
+              if(data === 'OK') { elt.slideUp('fast'); } // remove the element from the UI
+            }
+          }(rootnode));
+        }
+      }(jfd, request_data));
+
+      // attach an event handler to OK, allow this user to follow me      
+      if(lstid === 'followers' && f.active == 0) {
+        var fdok = fd.append('div').classed('fdok', true).html('OK');
+        var jfdok = $(fdok.node());
+        var request_data = { user:f.user, lst:lstid };
+        jfdok.on('click', function(rootnode, oknode, jdict) {
+          return function() {
+            $.post("/addfollow", jdict).done(function(elt, elt2){ // dont think closure in closure is necessary here, being lazy
+              return function(data){
+                if(data === 'OK') { 
+                  // ok we can follow this user
+                  elt.classed('li-active', true);
+                  elt.classed('li-inactive', false);
+                  elt2.remove(); // take out the OK button.
+                }
+              }
+            }(rootnode, oknode));
+          }
+        }(fd, fdok, request_data));
+      }
+
+      // // attach an event handler to OK, allow this user to follow me
+      // if(lstid === 'followers') {
+      //   if(f.active === 1) {
+      //     // people who follow us (display an X)
+      //   } else {
+      //     // people who asked to follow us (display an X and a OK)
+      //   }
+      // } else if(lstid === 'following') {
+      //   if(f.active === 1) {
+      //     // people who we follow (display an X)
+      //   } else {
+      //     // people who we asked to follow but they didnt confirom (display an X)
+      //   }
+      // }
+
+      // attach the actual username of the person
+      var fdu = fd.append('div').classed('fdu', true).html(f.user);
+
+      if(i === n-1) { fd.classed('li-no-border', true); }
+    }
+  }
+}
+
+// when page loads...
+$(document).ready(function(){
+  populateList('followers', ' followers:', followers);
+  populateList('following', ' following:', following);
+});
+
+</script>
+</head>
+
+<body>
+
+  <div class="content">
+    <header>
+      <!-- Site information/banner on top left -->
+      <section>
+        <h1>
+          <a href="/">FairXiv</a>
+          <small><strong>fair</strong> &bull; kive</small> 
+          <small role="definition">📢&nbsp;{{ totpapers }} latest Fairness/Ethics + ML/AI&nbsp;papers&nbsp;📢</small>
+        </h1>
+        <!--cs.[CV|CL|LG|AI|NE]/stat.ML-->
+        <form action="/search" method="get">
+          <input name="q" type="text" id="qfield" placeholder="Search arXiv papers">
+        </form>
+        <!-- Todo: implement search hints 
+          <div id="search_hint"></div> 
+        -->
+      </section>
+
+      <!-- User account information on top right -->
+      <section>
+          {% if not g.user %}
+          <form class="user-login" action="{{ url_for('login') }}" method="post">
+            <div class="form-group">
+              <label for="userNm">User name</label> 
+              <input type="text" id="userNm" name="username">
+            </div>
+            <div class="form-group">
+              <label for="passWd">Password</label> 
+              <input type="password" name="password" id="passWd">
+            </div>
+            <input type="submit" value="Log in / Sign up" class="btn-fancy">
+          </form>
+          {% else %}
+          <nav class="user-pills">
+            <a href="{{ url_for('account') }}">
+              <img src="static/user.svg" /> 
+              {{ g.user.username }}
+            </a>
+            <a href="{{ url_for('logout') }}">
+              <img src="static/sign-out.svg" /> 
+              Log out
+            </a>
+          </nav>
+          <nav class="user-links">
+            <a id="tabfriends" href="/friends">Friends</a>
+            <!-- <a id="tabdiscussions" href="/discussions">Discussions</a> -->
+            <a id="tabrec" href="/recommend">Recommended</a>
+            <a id="tablib" href="/library">Library</a>
+          </nav>
+          {% endif %}
+        </section>
+
+      </header>
+
+    <main id="maindiv">
+
+      <div>
+        <h2>About FairXiv</h2>
+        <p>A friendlier arXiv UI by <a href="https://twitter.com/summerscope" target="_blank">@summerscope</a></p>
+        <p>A fork of <a href="http://www.arxiv-sanity.com/" target="_blank">Arxiv Sanity Preserver</a> by <a href="https://twitter.com/karpathy" target="_blank">@karpathy</a></p>
+    </main>
+  </div>
+
+  <footer>
+    <p>A friendlier arXiv UI by <a href="https://twitter.com/summerscope" target="_blank">@summerscope</a></p>
+    <p>A fork of <a href="http://www.arxiv-sanity.com/" target="_blank">Arxiv Sanity Preserver</a> by <a href="https://twitter.com/karpathy" target="_blank">@karpathy</a></p>
+  </footer>
+
+</body>
+
+</html>

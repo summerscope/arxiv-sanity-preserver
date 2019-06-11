@@ -111,8 +111,7 @@ $(document).ready(function(){
     var elt = d3.select('#recommend-time-choice');
     elt.append('h3').html('Timeframe');
     for(var i=0;i<time_ranges.length;i++) {
-      var time_range = time_ranges[i];
-      
+      var time_range = time_ranges[i];      
       var aelt = elt.append('a').classed('timechoice', true).attr('href', '/'+link_endpoint+'?'+'timefilter='+time_range+'&vfilter='+vf).html(time_txt[time_range]);
       if(tf == time_range) { aelt.classed('timechoice-selected', true); } // also render as chosen
     }
