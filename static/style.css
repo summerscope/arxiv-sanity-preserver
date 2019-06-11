@@ -217,16 +217,25 @@ h1 {
 }
 
 h1 small {
-	display: block;
 	font-weight: 300;
+	text-shadow: none;
+	color: rgba(255,255,255,0.5);
+	display: inline-block;
+	margin-left: 0.25em;
+}
+
+h1 small[role="definition"] {
+	color: white;
 	font-size: 0.33333333333333em;
+	text-shadow: 0 2px 0 rgba(0,0,0,0.3);
+	display: block;	
 	padding: 0.5em 0.5em 0 0;
 	text-transform: uppercase;
 	letter-spacing: 0.05em;
 	text-shadow: none;
 	margin-top: 0.5em;
-	line-height: 1.35;
-	text-shadow: 0 2px 0 rgba(0,0,0,0.3);
+	margin-left: 0;
+	line-height: 1.35;	
 }
 
 h1 a {
@@ -268,7 +277,7 @@ h1 a:focus {
 
 @media screen and (min-width: 1024px) {
 	.user-links a {
-		margin: 0 1em;
+		margin: 0 0.5em;
 	}
 }
 
@@ -396,8 +405,8 @@ footer {
 article {
 	background-color: white;
 	position: relative;
-	width: calc(100% - 1em);
-	margin: 0.5em 0;
+	width: 100%;
+	margin-bottom: 1em;
 	font-size: 0.9444444444444em;
 	padding: 3em 2em 2em 2em;
 	border: 1px solid #e5e5e5;
@@ -409,9 +418,10 @@ article {
 	clip-path: polygon(calc(100% - 48px) 0, 100% 48px, 110% 110%, -10% 110%, -10% -10%);
 }
 
-@media screen and (min-width: 900px){
+@media screen and (min-width: 1024px){
 	article {
 		width: calc(50% - 1em);
+		margin-left: 1em;
 	}
 }
 
@@ -433,22 +443,18 @@ article {
 	text-transform: uppercase;
 	color: gray;
 	font-weight: bold;
-	align-items: flex-end;	
-	display: flex;
-	align-items: center;
-	flex-wrap: wrap;
-	margin-bottom: 1em;
+	order: 1;
 }
 
 #filters a {
-	font-size: 0.94444444444em;
+	font-size: 0.83333333333em;
 }
 
 #filters h2 {
 	display: inline-block;
 	margin: 0 0.1em 0 0;
-	color: #333;
-	font-size: 1.16666666667em;
+	color: #666;
+	font-size: 1em;
 }
 
 #filters .tab-selected {
@@ -496,28 +502,33 @@ article {
 
 #qfield {
 	width: 100%;
-	margin: 1em 0;
-  padding-left: 32px;
-  background-image:url('/static/search.png');
+	margin: 0 0 1em 0; 
+	padding-left: 32px;
+	background-image:url('/static/search.png');
 	background-repeat:no-repeat;
 	background-position: 4px center;
 	background-size: 24px;
 	font-size: 1em;
 }
 
-@media screen and (min-width: 768px) {
+#sys-messages, .msg {
+	width: 100%;
+	margin: 0 0 1em 0;
+	font-size: 0.833333333em;
+	color: #666;
+}
+
+@media screen and (min-width: 768px){
+	#sys-messages, .msg {
+		margin: 0 0 1em 1em;
+	}
 	#qfield {
-		width: calc(100% - 2em);
-		margin: 0 0 0 2em;
+		width: 420px;
+		margin: 0;
 	}
 }
 
-#sbox {
-	text-align: center;
-	flex-grow: 2;
-}
-
-.msg, .paperdivider {
+.paperdivider {
 	background-color: #EEF;
 	background: linear-gradient(58deg, rgba(188,49,142,0.1) 0%, rgba(198,0,0,0.1) 100%);
 	padding: 10px;
@@ -526,6 +537,10 @@ article {
 	margin: 0;
 	border: 1px solid rgba(188,49,142,0.2);
 	width: 100%;
+}
+
+.paperdivider {
+	margin: 0 0 1em 1em;
 }
 
 #search_hint {
@@ -671,13 +686,50 @@ ul.flashes li {
 	border-right: solid 1px #D6D3C5;
 }
 
-#sys-messages,
 #recommend-time-choice {
+	border-top: 3px solid rgba(0,0,0,0.1);
+	/* outline: 1px solid red; */
+}
+
+.extra-links {
+	order: 0;
 	margin-bottom: 1em;
+	text-align: center;
+	outline: 1px solid red;
+}
+
+.top9238 {
+	display: flex; 
+	flex-direction: column;
+}
+
+@media screen and (min-width: 768px) {
+
+	.extra-links {
+		order: 2;
+		margin-bottom: 0;
+	}
+
+	.top-stuff {
+		display:flex;
+	}
+
+	.top9238 {
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		outline: 1px dashed royalblue;
+	}
+
+	#recommend-time-choice {
+		flex-basis: 160px;
+		width: 160px;
+		flex-grow: 1;		
+	}
 }
 
 .timechoice {
-	margin-right: 1em;
+	display: block;
 }
 
 #recommend-time-choice a {
@@ -861,10 +913,17 @@ a.timechoice-selected:before {
 #rtable {
 	display: flex;
 	flex-flow: row wrap;
-	justify-content: space-between;
 	align-items: flex-start;
+	margin-top: 0.5em;
 	/* outline: 1px solid green; */
 }
+
+@media screen and (min-width: 768px) {
+	#rtable{
+		width: calc(100% - 160px);
+	}
+}
+
 
 /* UTILS */
 

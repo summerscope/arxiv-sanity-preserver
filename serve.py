@@ -247,7 +247,7 @@ def intmain():
   papers = [db[pid] for pid in DATE_SORTED_PIDS] # precomputed
   papers = papers_filter_version(papers, vstr)
   ctx = default_context(papers, render_format='recent',
-                        msg='Showing most recent Arxiv papers:')
+                        msg='Showing most recent arXiv papers:')
   return render_template('main.html', **ctx)
 
 @app.route("/<request_pid>")
@@ -400,7 +400,7 @@ def top():
   papers = [p for p in top_sorted_papers if curtime - p['time_published'] < tt*24*60*60]
   papers = papers_filter_version(papers, vstr)
   ctx = default_context(papers, render_format='top',
-                        msg='Top papers based on people\'s libraries:')
+                        msg='Most stored papers in FairXiv libraries:')
   return render_template('main.html', **ctx)
 
 @app.route('/toptwtr', methods=['GET'])

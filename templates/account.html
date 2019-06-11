@@ -183,8 +183,20 @@ $(document).ready(function(){
   <div class="content">
     <header>
       <!-- Site information/banner on top left -->
-      <h1><a href="/">FairXiv</a> <small>📢&nbsp;{{ totpapers }} latest ML/AI + Fairness/Ethics Arxiv&nbsp;papers&nbsp;📢</small></h1>
-      <!--cs.[CV|CL|LG|AI|NE]/stat.ML-->
+      <section>
+        <h1>
+          <a href="/">FairXiv</a>
+          <small><strong>fair</strong> &bull; kive</small> 
+          <small role="definition">📢&nbsp;{{ totpapers }} latest Fairness/Ethics + ML/AI&nbsp;papers&nbsp;📢</small>
+        </h1>
+        <!--cs.[CV|CL|LG|AI|NE]/stat.ML-->
+        <form action="/search" method="get">
+          <input name="q" type="text" id="qfield" placeholder="Search arXiv papers">
+        </form>
+        <!-- Todo: implement search hints 
+          <div id="search_hint"></div> 
+        -->
+      </section>
 
       <!-- User account information on top right -->
       <section>
@@ -254,7 +266,7 @@ $(document).ready(function(){
   </div>
 
   <footer>
-    <p>A friendlier Arxiv UI by <a href="https://twitter.com/summerscope" target="_blank">@summerscope</a></p>
+    <p>A friendlier arXiv UI by <a href="https://twitter.com/summerscope" target="_blank">@summerscope</a></p>
     <p>A fork of <a href="http://www.arxiv-sanity.com/" target="_blank">Arxiv Sanity Preserver</a> by <a href="https://twitter.com/karpathy" target="_blank">@karpathy</a></p>
   </footer>
 

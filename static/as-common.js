@@ -136,7 +136,7 @@ function addPapers(num, dynamic) {
     else { var pdf_url = pdf_link + '.pdf'; }
 
     // show raw arxiv id
-    tdiv.append('a').classed('links', true).attr('href', p.link).attr('target', '_blank').html('Arxiv ' + p.pid);
+    tdiv.append('a').classed('links', true).attr('href', p.link).attr('target', '_blank').html('arXiv ' + p.pid);
     tdiv.append('a').classed('links', true).attr('href', pdf_url).attr('target', '_blank').html('Full PDF');
 
     if(p.comment) {

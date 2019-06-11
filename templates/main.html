@@ -46,7 +46,7 @@ $(document).ready(function(){
 	urlq = QueryString.q;
 
   // display message, if any
-  if(msg !== '') { d3.select("#sys-messages").append('div').classed('msg', true).html(msg); }
+  if(msg !== '') { d3.select("#sys-messages").html(msg); }
 
   // add papers to #rtable
 	var done = addPapers(10, false);
@@ -160,8 +160,20 @@ $(document).ready(function(){
   <div class="content">
     <header>
       <!-- Site information/banner on top left -->
-      <h1><a href="/">FairXiv</a> <small>📢&nbsp;{{ totpapers }} latest ML/AI + Fairness/Ethics Arxiv&nbsp;papers&nbsp;📢</small></h1>
-      <!--cs.[CV|CL|LG|AI|NE]/stat.ML-->
+      <section>
+        <h1>
+          <a href="/">FairXiv</a>
+          <small><strong>fair</strong> &bull; kive</small> 
+          <small role="definition">📢&nbsp;{{ totpapers }} latest Fairness/Ethics + ML/AI&nbsp;papers&nbsp;📢</small>
+        </h1>
+        <!--cs.[CV|CL|LG|AI|NE]/stat.ML-->
+        <form action="/search" method="get">
+          <input name="q" type="text" id="qfield" placeholder="Search arXiv papers">
+        </form>
+        <!-- Todo: implement search hints 
+          <div id="search_hint"></div> 
+        -->
+      </section>
 
       <!-- User account information on top right -->
       <section>
@@ -239,28 +251,25 @@ $(document).ready(function(){
 
     <!-- this div will be rendered into dynamically at init with JS --> 
     <main id="maindiv">
-      <nav id="filters">
-        <div>
-          <h2>Sort by</h2> 
-          <a id="tabrecent" href="/">New</a> / 
-          <a id="tabtop" href="/top">Popular</a> / 
-          <a id="tabtwtr" href="/toptwtr">Twitter</a>
+
+      <div class="top9238">
+        <nav id="filters">
+          <div>
+            <h2>Sort by</h2> 
+            <a id="tabrecent" href="/">New</a> / 
+            <a id="tabtop" href="/top">Popular</a> / 
+            <a id="tabtwtr" href="/toptwtr">Twitter</a>
+          </div>
+        </nav>
+        <nav class="extra-links">About &bull; Github</nav>
+      </div>
+        
+      <div class="top-stuff">    
+        <nav id="recommend-time-choice"></nav>
+        <div id="rtable">
+          <aside role="alert" id="sys-messages"></aside>
         </div>
-        <div id="sbox">
-          <form action="/search" method="get">
-            <input name="q" type="text" id="qfield" placeholder="Search Arxiv papers...">
-          </form>
-          <!-- Todo: implement search hints 
-            <div id="search_hint"></div> 
-          -->
-        </div>
-      </nav>
-
-      <nav id="recommend-time-choice"></nav>
-
-      <aside id="sys-messages"></aside>
-
-      <div id="rtable"></div>
+      </div>
 
       <div id="loadmore">
         <button id="loadmorebtn">Load more</button>
@@ -271,7 +280,7 @@ $(document).ready(function(){
   </div>
 
   <footer>
-    <p>A friendlier Arxiv UI by <a href="https://twitter.com/summerscope" target="_blank">@summerscope</a></p>
+    <p>A friendlier arXiv UI by <a href="https://twitter.com/summerscope" target="_blank">@summerscope</a></p>
     <p>A fork of <a href="http://www.arxiv-sanity.com/" target="_blank">Arxiv Sanity Preserver</a> by <a href="https://twitter.com/karpathy" target="_blank">@karpathy</a></p>
   </footer>
 
