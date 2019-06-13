@@ -91,17 +91,19 @@ $(document).ready(function(){
   var time_range = tf;
 
   // set up time filtering options
-  if(render_format === 'recommend' || render_format === 'top' || render_format === 'recent' || render_format === 'friends') {
+  if(render_format === 'recommend' || render_format === 'top' || render_format === 'toptwtr' || render_format === 'recent' || render_format === 'friends') {
     // insert version filtering options for these views
     var elt = d3.select('#recommend-time-choice');
     var vflink = vf === 'all' ? '1' : 'all'; // toggle only showing v1 or not
-    if(render_format === 'recent') {
-      elt.append('h3').html('Version');
-      var aelt = elt.append('a').classed('vchoice', true).attr('href', '/'+link_endpoint+'?'+'&vfilter='+vflink).html('Version 1'); // leave out timefilter from this page
-    } else {
-      elt.append('h3').html('Version');
-      var aelt = elt.append('a').classed('vchoice', true).attr('href', '/'+link_endpoint+'?'+'timefilter='+time_range+'&vfilter='+vflink).html('Version 1');
-    }
+    // if(render_format === 'recent') {
+    //   elt.append('h3').html('Version');
+    //   var aelt = elt.append('a').classed('vchoice', true).attr('href', '/'+link_endpoint+'?'+'&vfilter='+vflink).html('Version 1'); // leave out timefilter from this page
+    // } else {
+    //   elt.append('h3').html('Version');
+    //   var aelt = elt.append('a').classed('vchoice', true).attr('href', '/'+link_endpoint+'?'+'timefilter='+time_range+'&vfilter='+vflink).html('Version 1');
+    // }
+    elt.append('h3').html('Version');
+    var aelt = elt.append('a').classed('vchoice', true).attr('href', '/'+link_endpoint+'?'+'timefilter='+time_range+'&vfilter='+vflink).html('Version 1');
     if(vf === '1') { aelt.classed('vchoice-selected', true); }
   }
 

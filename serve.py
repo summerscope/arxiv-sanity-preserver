@@ -451,7 +451,7 @@ def library():
   if g.user:
     msg = '%d papers in your library:' % (len(ret), )
   else:
-    msg = 'You must be logged in. Once you are, you can save papers to your library (with the save icon on the right of each paper) and they will show up here.'
+    msg = 'You must be logged in to save papers to your library.'
   ctx = default_context(papers, render_format='library', msg=msg)
   return render_template('main.html', **ctx)
 
