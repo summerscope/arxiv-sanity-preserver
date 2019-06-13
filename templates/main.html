@@ -223,7 +223,7 @@ $(document).ready(function(){
         <div id="flashesdiv">
           <ul class="flashes">
           {% for message in flashes %}
-            <li>
+            <li role="alert">
               <div style="float:right;cursor:pointer;" id="xmessage">✖</div>
               {{ message }}
           {% endfor %}

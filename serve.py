@@ -244,10 +244,16 @@ def goaway():
 @app.route("/")
 def intmain():
   vstr = request.args.get('vfilter', 'all')
+  if vstr == 'all':
+    paperver = ' (all versions)'
+  elif vstr == '1': 
+    paperver =  ' (version 1)'
+  else:
+    paperver = ''
   papers = [db[pid] for pid in DATE_SORTED_PIDS] # precomputed
   papers = papers_filter_version(papers, vstr)
   ctx = default_context(papers, render_format='recent',
-                        msg='Showing most recent arXiv papers:')
+                        msg='Most recent arXiv papers' + paperver + ':')
   return render_template('main.html', **ctx)
 
 @app.route("/<request_pid>")
@@ -398,6 +404,12 @@ def top():
   """ return top papers """
   ttstr = request.args.get('timefilter', 'week') # default is week
   vstr = request.args.get('vfilter', 'all') # default is all (no filter)
+  if vstr == 'all':
+    paperver = ' (all versions)'
+  elif vstr == '1': 
+    paperver =  ' (version 1)'
+  else:
+    paperver = ''
   legend = {'day':1, '3days':3, 'week':7, 'month':30, 'year':365, 'alltime':10000}
   tt = legend.get(ttstr, 7)
   curtime = int(time.time()) # in seconds
@@ -405,13 +417,20 @@ def top():
   papers = [p for p in top_sorted_papers if curtime - p['time_published'] < tt*24*60*60]
   papers = papers_filter_version(papers, vstr)
   ctx = default_context(papers, render_format='top',
-                        msg='Most stored papers in FairXiv libraries:')
+                        msg='Papers most often saved on FairXiv in the last ' + ttstr + paperver + ':')
   return render_template('main.html', **ctx)
 
 @app.route('/toptwtr', methods=['GET'])
 def toptwtr():
   """ return top papers """
   ttstr = request.args.get('timefilter', 'day') # default is day
+  vstr = request.args.get('vfilter', 'all') # default is all (no filter)
+  if vstr == 'all':
+    paperver = ' (all versions)'
+  elif vstr == '1': 
+    paperver =  ' (version 1)'
+  else:
+    paperver = ''
   tweets_top = {'day':tweets_top1, 'week':tweets_top7, 'month':tweets_top30}[ttstr]
   cursor = tweets_top.find().sort([('vote', pymongo.DESCENDING)]).limit(100)
   papers, tweets = [], []
@@ -421,7 +440,7 @@ def toptwtr():
       tweet = {k:v for k,v in rec.items() if k != '_id'}
       tweets.append(tweet)
   ctx = default_context(papers, render_format='toptwtr', tweets=tweets,
-                        msg='Top papers mentioned on Twitter over last ' + ttstr + ':')
+                        msg='Top papers mentioned on Twitter in the last ' + ttstr + paperver + ':')
   return render_template('main.html', **ctx)
 
 @app.route('/library')
