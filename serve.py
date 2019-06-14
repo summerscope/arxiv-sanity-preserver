@@ -391,7 +391,7 @@ def recommend():
   """ return user's svm sorted list """
   ttstr = request.args.get('timefilter', 'week') # default is week
   vstr = request.args.get('vfilter', 'all') # default is all (no filter)
-  legend = {'day':1, '3days':3, 'week':7, 'month':30, 'year':365}
+  legend = {'day':1, '3 days':3, 'week':7, 'month':30, 'year':365}
   tt = legend.get(ttstr, None)
   papers = papers_from_svm(recent_days=tt)
   papers = papers_filter_version(papers, vstr)
@@ -417,7 +417,7 @@ def top():
   papers = [p for p in top_sorted_papers if curtime - p['time_published'] < tt*24*60*60]
   papers = papers_filter_version(papers, vstr)
   ctx = default_context(papers, render_format='top',
-                        msg='Papers most often saved on FairXiv in the last ' + ttstr + paperver + ':')
+                        msg='Papers most often saved on fairXiv in the last ' + ttstr + paperver + ':')
   return render_template('main.html', **ctx)
 
 @app.route('/toptwtr', methods=['GET'])
@@ -499,7 +499,7 @@ def review():
 def friends():
     
     ttstr = request.args.get('timefilter', 'week') # default is week
-    legend = {'day':1, '3days':3, 'week':7, 'month':30, 'year':365}
+    legend = {'day':1, '3 days':3, 'week':7, 'month':30, 'year':365}
     tt = legend.get(ttstr, 7)
 
     papers = []

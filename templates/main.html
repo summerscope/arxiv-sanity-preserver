@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>FairXiv</title>
+<title>fairXiv</title>
 
 <!-- MathJax -->
 <script type="text/x-mathjax-config">
@@ -86,8 +86,8 @@ $(document).ready(function(){
   if(render_format === 'toptwtr') { link_endpoint = 'toptwtr'; }
   if(render_format === 'discussions') { link_endpoint = 'discussions'; }
 
-  var time_ranges = ['day', '3days', 'week', 'month', 'year', 'alltime'];
-  var time_txt = {'day':'Last day', '3days': 'Last 3 days', 'week': 'Last week', 'month': 'Last month', 'year': 'Last year', 'alltime': 'All time'}
+  var time_ranges = ['day', '3 days', 'week', 'month', 'year', 'all time'];
+  var time_txt = {'day':'Last day', '3 days': 'Last 3 days', 'week': 'Last week', 'month': 'Last month', 'year': 'Last year', 'all time': 'All time'}
   var time_range = tf;
 
   // set up time filtering options
@@ -95,6 +95,8 @@ $(document).ready(function(){
     // insert version filtering options for these views
     var elt = d3.select('#recommend-time-choice');
     var vflink = vf === 'all' ? '1' : 'all'; // toggle only showing v1 or not
+
+    // I don't know if this conditional statement does anything actually...?
     // if(render_format === 'recent') {
     //   elt.append('h3').html('Version');
     //   var aelt = elt.append('a').classed('vchoice', true).attr('href', '/'+link_endpoint+'?'+'&vfilter='+vflink).html('Version 1'); // leave out timefilter from this page
@@ -167,7 +169,7 @@ $(document).ready(function(){
       <!-- Site information/banner on top left -->
       <section>
         <h1>
-          <a href="/">FairXiv</a>
+          <a href="/">fairXiv</a>
           <small><strong>fair</strong> &bull; kive</small> 
           <small role="definition">📢&nbsp;{{ totpapers }} latest Fairness/Ethics + ML/AI&nbsp;papers&nbsp;📢</small>
         </h1>
