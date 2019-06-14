@@ -200,37 +200,41 @@ $(document).ready(function(){
 
       <!-- User account information on top right -->
       <section>
-          {% if not g.user %}
-          <form class="user-login" action="{{ url_for('login') }}" method="post">
-            <div class="form-group">
-              <label for="userNm">User name</label> 
-              <input type="text" id="userNm" name="username">
-            </div>
-            <div class="form-group">
-              <label for="passWd">Password</label> 
-              <input type="password" name="password" id="passWd">
-            </div>
-            <input type="submit" value="Log in / Sign up" class="btn-fancy">
-          </form>
-          {% else %}
-          <nav class="user-pills">
-            <a href="{{ url_for('account') }}">
-              <img src="static/user.svg" /> 
-              {{ g.user.username }}
-            </a>
-            <a href="{{ url_for('logout') }}">
-              <img src="static/sign-out.svg" /> 
-              Log out
-            </a>
-          </nav>
-          <nav class="user-links">
-            <a id="tabfriends" href="/friends">Friends</a>
-            <!-- <a id="tabdiscussions" href="/discussions">Discussions</a> -->
-            <a id="tabrec" href="/recommend">Recommended</a>
-            <a id="tablib" href="/library">Library</a>
-          </nav>
-          {% endif %}
-        </section>
+        <nav class="extra-links">
+          <a href="/about">About</a> 
+          <a href="https://github.com/summerscope/fairXiv" target="_blank">Github</a>
+        </nav>
+        {% if not g.user %}
+        <form class="user-login" action="{{ url_for('login') }}" method="post">
+          <div class="form-group">
+            <label for="userNm">User name</label> 
+            <input type="text" id="userNm" name="username">
+          </div>
+          <div class="form-group">
+            <label for="passWd">Password</label> 
+            <input type="password" name="password" id="passWd">
+          </div>
+          <input type="submit" value="Log in / Sign up" class="btn-fancy">
+        </form>
+        {% else %}
+        <nav class="user-pills">
+          <a href="{{ url_for('account') }}">
+            <img src="static/user.svg" /> 
+            {{ g.user.username }}
+          </a>
+          <a href="{{ url_for('logout') }}">
+            <img src="static/sign-out.svg" /> 
+            Log out
+          </a>
+        </nav>
+        <nav class="user-links">
+          <a id="tabfriends" href="/friends">Friends</a>
+          <!-- <a id="tabdiscussions" href="/discussions">Discussions</a> -->
+          <a id="tabrec" href="/recommend">Recommended</a>
+          <a id="tablib" href="/library">Library</a>
+        </nav>
+        {% endif %}
+      </section>
 
       </header>
 
@@ -240,8 +244,8 @@ $(document).ready(function(){
       <div>
         <h2>Friends</h2>
         <div id="ffdesc">
-          You can follow your friends on arxiv-sanity. This will populate the "friends"
-          tab of arxiv-sanity, which shows recent papers sorted by how popular they are
+          You can follow your friends on fairXiv. This will populate the "friends"
+          tab of fairXiv, which shows recent papers sorted by how popular they are
           with your friends. In the lists below, <span style="color:#090">green background</span> indicates an active connection,
           and <span style="color:#f00">red background</span> indicates a pending connection.
         </div>
