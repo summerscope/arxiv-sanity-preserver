@@ -1,9 +1,16 @@
 
 # fairXiv
 
+A fork of Andrej Karpathy's [www.arxiv-sanity.com/](http://www.arxiv-sanity.com/), fairXiv provides a modern responsive UI for searching papers on arXiv with improved usability and accessibility.
+
+fairXiv host papers with a focus on AI ethics and statistical fairness, but you can fork this repo to host any slice of arXiv you like, if you want to reproduce the interface. With this code base you could replicate the website to any of your favorite subsets of Arxiv by changing the categories in `fetch_papers.py`.
+
+fairXiv greps for and hosts papers dealing with fairness and ethics in the Machine Learning and Data Science categories of CS on Arxiv. Live at [www.fairXiv.org/](http://www.fairXiv.org/) serving over 2,000 of the latest arXiv papers (cs.[CV|AI|CL|LG|NE]/stat.ML). 
+
+
 This project is a web interface that attempts to tame the overwhelming flood of papers on Arxiv. It allows researchers to keep track of recent papers, search for papers, sort papers by similarity to any paper, see recent popular papers, to add papers to a personal library, and to get personalized recommendations of (new or old) Arxiv papers. This code is currently running live at [www.arxiv-sanity.com/](http://www.arxiv-sanity.com/), where it's serving 25,000+ Arxiv papers from Machine Learning (cs.[CV|AI|CL|LG|NE]/stat.ML) over the last ~3 years. With this code base you could replicate the website to any of your favorite subsets of Arxiv by simply changing the categories in `fetch_papers.py`.
 
-![user interface](https://raw.github.com/karpathy/arxiv-sanity-preserver/master/ui.jpeg)
+![user interface](https://raw.github.com/summerscope/fairXiv/master/ui.png)
 
 ### Code layout
 
@@ -48,6 +55,11 @@ Optionally you can also run the `twitter_daemon.py` in a screen session, which u
 I have a simple shell script that runs these commands one by one, and every day I run this script to fetch new papers, incorporate them into the database, and recompute all tfidf vectors/classifiers. More details on this process below.
 
 **protip: numpy/BLAS**: The script `analyze.py` does quite a lot of heavy lifting with numpy. I recommend that you carefully set up your numpy to use BLAS (e.g. OpenBLAS), otherwise the computations will take a long time. With ~25,000 papers and ~5000 users the script runs in several hours on my current machine with a BLAS-linked numpy.
+
+### Search queries
+
+To run the script which hits the arXiv API and see some results in your terminal, play around with this:
+`python list_papers.py --search-query="cat:cs.LG+AND+all:fair+OR+cat:cs.LG+all:ethical" | less`
 
 ### Running online
 
