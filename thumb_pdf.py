@@ -62,7 +62,7 @@ for i,p in enumerate(pdf_files):
   # this command will generate 8 independent images thumb-0.png ... thumb-7.png of the thumbnails
   pp = Popen(['convert', '%s[0-7]' % (pdf_path, ), '-thumbnail', 'x156', os.path.join(Config.tmp_dir, 'thumb.png')])
   t0 = time.time()
-  while time.time() - t0 < 20: # give it 15 seconds deadline
+  while time.time() - t0 < 120: # give it 15 seconds deadline
     ret = pp.poll()
     if not (ret is None):
       # process terminated
@@ -70,7 +70,7 @@ for i,p in enumerate(pdf_files):
     time.sleep(0.1)
   ret = pp.poll()
   if ret is None:
-    print("convert command did not terminate in 20 seconds, terminating.")
+    print("convert command did not terminate in 120 seconds, terminating.")
     pp.terminate() # give up
 
   if not os.path.isfile(os.path.join(Config.tmp_dir, 'thumb-0.png')):
