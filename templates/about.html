@@ -114,6 +114,7 @@ function populateList(lstid, msg, lst) {
 
 // when page loads...
 $(document).ready(function(){
+  if( render_format === 'about') { d3.select('#tababout').classed('tab-selected', true); }
   populateList('followers', ' followers:', followers);
   populateList('following', ' following:', following);
 });

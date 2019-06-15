@@ -288,7 +288,8 @@ def discuss():
 
 @app.route('/about')
 def about():
-  ctx = default_context([])
+  papers = []
+  ctx = default_context(papers, render_format='about')
   return render_template('about.html', **ctx)
 
 @app.route('/comment', methods=['POST'])
