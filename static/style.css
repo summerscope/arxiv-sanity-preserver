@@ -245,8 +245,7 @@ h1 small[role="definition"] {
 	text-transform: uppercase;
 	letter-spacing: 0.05em;
 	text-shadow: none;
-	margin-top: 0.5em;
-	margin-bottom: 1.5em;
+	margin-bottom: 0em;
 	margin-left: 0;
 	line-height: 1.35;	
 }
@@ -295,6 +294,8 @@ h1 a:focus {
 @media screen and (min-width: 768px) {
 	h1 small[role="definition"] {
 		text-align: right;
+		margin-bottom: 1.5em;
+		margin-top: 0.5em;
 	}
 	.user-links {
 		margin-bottom: 0;
