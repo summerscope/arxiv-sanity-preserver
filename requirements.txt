@@ -16,3 +16,5 @@ flask
 flask_limiter
 tornado
 pymongo
+
+# uwsgi
