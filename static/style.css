@@ -168,9 +168,10 @@ a.cs.selected {
 .tt {
 	background-color: #f2f8f9;
 	line-height: 1.5;
-	padding: 1em;
+	padding: 0.5em;
 	display: block;
 	margin-top: 1.25em;
+	font-size: 0.8333333333333em;
 }
 
 
@@ -179,9 +180,15 @@ a.cs.selected {
 	display: block;
 	color: #666;
 	font-size: 0.94444444444444em;
-	margin-bottom: 0.5em;
 	text-transform: uppercase;
 	letter-spacing: 0.1em;
+}
+
+@media screen and (min-width: 768px) {
+	.tt {
+		padding: 1em;
+		font-size: 1em;
+	}
 }
 
 @media screen and (min-width: 1400px) {
@@ -226,7 +233,7 @@ h1 small {
 	font-weight: 300;
 	text-shadow: none;
 	color: rgba(255,255,255,0.5);
-	display: inline-block;
+	display: inline;
 	margin-left: 0.25em;
 }
 
@@ -262,12 +269,20 @@ h1 a:focus {
 }
 
 .user-links {
-	margin-top: 1em;
+	margin-bottom: 1em;
 }
 
 .user-links a {
 	font-size: 0.8333333333em;
-	font-weight: bold;
+	margin: 0 0.16666666666em;
+}
+
+.user-links a:first-child {
+	margin-left: 0;
+}
+
+.user-links a:last-child {
+	margin-right: 0;
 }
 
 .user-pills a {
@@ -282,9 +297,8 @@ h1 a:focus {
 		text-align: right;
 	}
 	.user-links {
-		margin-top: 0;
+		margin-bottom: 0;
 	}
-	.user-links a:last-child,
 	.user-pills a:last-child{
 		margin-right: 0;
 	}
@@ -306,6 +320,7 @@ h1 a:focus {
 .user-login input[type="text"],
 .user-login input[type="password"]{
 	font-size: 1em;
+	width: 100%;
 }
 
 .user-pills a,
@@ -319,6 +334,12 @@ h1 a:focus {
 	transition: all 200ms ease;
 	line-height: 1;
 	font-weight: 400;
+	
+}
+
+.user-login input[type="submit"] {
+	width: 100%;
+	margin-top: 0.55555555555em;
 }
 
 .user-pills a:hover,
@@ -334,7 +355,14 @@ h1 a:focus {
 	height: 16px;
 }
 
+.user-login .form-group {
+	width: calc(50% - 2px);
+}
+
 @media screen and (min-width: 768px) {
+	.user-login .form-group {
+		width: auto;
+	}
 	.user-links, 
 	.user-pills {
 		text-align: right;
@@ -346,6 +374,15 @@ h1 a:focus {
 	.user-login input[type="submit"] {
 		margin-left: 0.5em;
 	}
+	.user-login input[type="text"],
+	.user-login input[type="password"]{
+		width: auto;
+	}
+
+	.user-login input[type="submit"] {
+		width: auto;
+		margin-top: 0;
+	}
 }
 
 header, footer {
@@ -354,14 +391,39 @@ header, footer {
 	color: white;
 	padding: 1em;
 	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+header section {
+	width: 100%;
+}
+
+header section:nth-child(1) {
+	margin-top: 1.11111111111em;
+}
+header section:nth-child(2) {
+	order: -1;
 }
 
 @media screen and (min-width: 768px) {
+
+	header section {
+		width: auto;
+	}
+	
+	header section:nth-child(2) {
+		order: 1;
+	}
+	header section:nth-child(1) {
+		margin-top: 0;
+	}
 	header, footer {
 		text-align: left;
-		display: flex;
-		justify-content: space-between;
-		align-items: flex-end;
+		flex-direction: row;
+		
 	}
 }
 
@@ -371,7 +433,7 @@ footer {
 }
 
 #maindiv {
-	padding: 1em;
+	padding: 0.5555555555555em;
 	background-color: #F7F7F7;
 }
 
@@ -381,7 +443,7 @@ article {
 	width: 100%;
 	margin-bottom: 1em;
 	font-size: 0.9444444444444em;
-	padding: 3em 2em 2em 2em;
+	padding: 2em 1em 1em 1em;
 	border: 1px solid #e5e5e5;
 	-webkit-box-shadow: 0px 6px 5px 0px rgba(0,0,0,0.05);
 	-moz-box-shadow: 0px 6px 5px 0px rgba(0,0,0,0.05);
@@ -389,6 +451,17 @@ article {
 	/* Clip the top right corner of the paper */
 	-webkit-clip-path: polygon(calc(100% - 48px) 0, 100% 48px, 110% 110%, -10% 110%, -10% -10%);
 	clip-path: polygon(calc(100% - 48px) 0, 100% 48px, 110% 110%, -10% 110%, -10% -10%);
+}
+
+@media screen and (min-width: 768px){
+	#maindiv {
+		padding: 1em;
+	}
+	article {
+		margin-left: 0;
+		margin-right: 0;
+		padding: 3em 2em 2em 2em;
+	}
 }
 
 @media screen and (min-width: 1024px){
@@ -475,7 +548,7 @@ article {
 
 #qfield {
 	width: 100%;
-	margin: 0 0 1em 0; 
+	margin: 0; 
 	padding-left: 32px;
 	background-image:url('/static/search.png');
 	background-repeat:no-repeat;
@@ -665,6 +738,10 @@ ul.flashes li {
 	flex-direction: column;
 }
 
+.top9238 section {
+	order: -1;
+}
+
 @media screen and (min-width: 768px) {
 	.top-stuff {
 		display:flex;
@@ -674,7 +751,10 @@ ul.flashes li {
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
-		/* outline: 1px dashed royalblue; */
+	}
+
+	.top9238 section {
+		order: 1;
 	}
 
 	#recommend-time-choice {
