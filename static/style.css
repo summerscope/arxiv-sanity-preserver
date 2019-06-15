@@ -267,6 +267,10 @@ h1 a:focus {
 	font-size: 0.77777777777em;
 }
 
+.user-login {
+	text-align: left;
+}
+
 .user-links {
 	margin-bottom: 1em;
 }
@@ -370,19 +374,28 @@ h1 a:focus {
 		white-space: nowrap;
 	}
 	.user-login {
-		white-space: nowrap;
+		text-align: right;
 	}
 	.user-login input[type="submit"] {
-		margin-left: 0.5em;
+		display: block;
+		margin-left: auto;
+		margin-top: 10px;
+		width: auto;
 	}
 	.user-login input[type="text"],
 	.user-login input[type="password"]{
 		width: auto;
 	}
+}
 
+@media screen and (min-width: 1024px) {
 	.user-login input[type="submit"] {
-		width: auto;
+		display: inline-block;
+		margin-left: 0.5em;
 		margin-top: 0;
+	}
+	.user-login {
+		text-align: left;
 	}
 }
 
@@ -510,14 +523,9 @@ article {
 }
 
 
-/* .animg {
-	text-align: left;
-	height: 156px;
-}*/ 
-
 .animg img {
 	width: 100%;
-	margin: 0.25em 0;
+	margin: 0.555555555em 0;
 }
 
 .paperdesc {
