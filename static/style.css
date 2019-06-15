@@ -47,9 +47,15 @@ button, input[type="submit"] {
 input[type="text"],
 input[type="password"] {
 	padding: 0.4em 0.5em;
-	border-radius: 0.5em;
-	border-color: rgba(0,0,0,0.35);
+	border-radius: 0.25em;
+	border-color: rgba(0,0,0,0.4);
 	border-width: 1px;
+	transition: all 200ms ease;
+}
+
+input[type="text"]:hover,
+input[type="password"]:hover {
+	border-color: rgba(0,0,0,0.6);
 }
 
 label {
@@ -229,11 +235,11 @@ h1 small[role="definition"] {
 	font-size: 0.33333333333333em;
 	text-shadow: 0 2px 0 rgba(0,0,0,0.3);
 	display: block;	
-	padding: 0.5em 0.5em 0 0;
 	text-transform: uppercase;
 	letter-spacing: 0.05em;
 	text-shadow: none;
 	margin-top: 0.5em;
+	margin-bottom: 1.5em;
 	margin-left: 0;
 	line-height: 1.35;	
 }
@@ -255,31 +261,33 @@ h1 a:focus {
 	font-size: 0.77777777777em;
 }
 
-.user-links a {
-	font-size: 0.88888888em;
+.user-links {
+	margin-top: 1em;
 }
 
-.user-links a,
+.user-links a {
+	font-size: 0.8333333333em;
+	font-weight: bold;
+}
+
 .user-pills a {
 	color: white;
 	text-decoration: none;
-	font-weight: 300;
 	transition: all 200ms ease;
 	margin: 0 0.25em;
 }
 
 @media screen and (min-width: 768px) {
+	h1 small[role="definition"] {
+		text-align: right;
+	}
+	.user-links {
+		margin-top: 0;
+	}
 	.user-links a:last-child,
 	.user-pills a:last-child{
 		margin-right: 0;
-	}	
-
-	.user-pills {
-		margin-top: 7px;
 	}
-}
-
-@media screen and (min-width: 1024px) {
 	.user-links a {
 		margin: 0 0.5em;
 	}
@@ -288,55 +296,16 @@ h1 a:focus {
 .user-links a:hover,
 .user-links a:active,
 .user-links a:focus {
-	-webkit-box-shadow: 0px 2px 0px 0px rgba(255,255,255,0.5);
-	-moz-box-shadow: 0px 2px 0px 0px rgba(255,255,255,0.5);
-	box-shadow: 0px 2px 0px 0px rgba(255,255,255,0.5);
+	
 }
 
 .user-links a.tab-selected {
-	-webkit-box-shadow: 0px 2px 0px 0px rgba(255,255,255,1);
-	-moz-box-shadow: 0px 2px 0px 0px rgba(255,255,255,1);
-	box-shadow: 0px 2px 0px 0px rgba(255,255,255,1);
-}
-
-.user-links {
-	margin-top: 1em;
-}
-
-.user-login {
-	font-weight: 300;
-}
-
-.user-login label {
-	text-shadow: 0 2px 0 rgba(0,0,0,0.3);
+	color: #c2137c;
 }
 
 .user-login input[type="text"],
 .user-login input[type="password"]{
 	font-size: 1em;
-	background-color: rgba(155,155,155, 0.3);
-	border: none;
-	transition: all 200ms ease;
-	margin: 0.35em 0 0.65em;
-	-webkit-box-shadow: 0px -2px 0px 0px rgba(0,0,0,0.2), 0px 2px 0px 0px rgba(255,255,255,0.2);
-	-moz-box-shadow: 0px -2px 0px 0px rgba(0,0,0,0.2), 0px 2px 0px 0px rgba(255,255,255,0.2);
-	box-shadow: 0px -2px 0px 0px rgba(0,0,0,0.2), 0px 2px 0px 0px rgba(255,255,255,0.2);
-	color: white;
-}
-
-.user-login input[type="text"]:hover,
-.user-login input[type="password"]:hover {
-	-webkit-box-shadow: 0px -2px 0px 0px rgba(0,0,0,0.3), 0px 2px 0px 0px rgba(255,255,255,0.3);
-	-moz-box-shadow: 0px -2px 0px 0px rgba(0,0,0,0.3), 0px 2px 0px 0px rgba(255,255,255,0.3);
-	box-shadow: 0px -2px 0px 0px rgba(0,0,0,0.3), 0px 2px 0px 0px rgba(255,255,255,0.3);
-}
-
-.user-login input[type="text"]:focus,
-.user-login input[type="text"]:active,
-.user-login input[type="password"]:focus,
-.user-login input[type="password"]:active {
-	background-color: white;
-	color: black;
 }
 
 .user-pills a,
@@ -371,12 +340,11 @@ h1 a:focus {
 		text-align: right;
 		white-space: nowrap;
 	}
-
 	.user-login {
 		white-space: nowrap;
 	}
 	.user-login input[type="submit"] {
-		display: block;
+		margin-left: 0.5em;
 	}
 }
 
@@ -691,16 +659,6 @@ ul.flashes li {
 	font-size: 0.8333333333em;
 	border-bottom: 3px solid rgba(0,0,0,0.1);
 }
-.extra-links {
-	margin-bottom: 1em;
-	text-align: center;
-	font-size: 0.88888888em;
-}
-
-.extra-links a {
-	margin: 0 0.5em;
-	color: white;
-}
 
 .top9238 {
 	display: flex; 
@@ -708,10 +666,6 @@ ul.flashes li {
 }
 
 @media screen and (min-width: 768px) {
-	.extra-links {
-		text-align: right;
-	}
-
 	.top-stuff {
 		display:flex;
 	}

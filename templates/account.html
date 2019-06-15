@@ -186,8 +186,7 @@ $(document).ready(function(){
       <section>
         <h1>
           <a href="/">fairXiv</a>
-          <small><span class="sr-only">Pronounced</span> <strong>fair</strong> &bull; kive</small> 
-          <small role="definition">📢&nbsp;{{ totpapers }} latest Fairness/Ethics + ML/AI&nbsp;papers&nbsp;📢</small>
+          <small><span class="sr-only">Pronounced</span> <strong>fair</strong> &bull; kive</small>
         </h1>
         <!--cs.[CV|CL|LG|AI|NE]/stat.ML-->
         <form action="/search" method="get">
@@ -200,19 +199,16 @@ $(document).ready(function(){
 
       <!-- User account information on top right -->
       <section>
-        <nav class="extra-links">
-          <a href="/about">About</a> 
-          <a href="https://github.com/summerscope/fairXiv" target="_blank">Github</a>
-        </nav>
+        <h1><small role="definition">📢&nbsp;{{ totpapers }} latest Fairness/Ethics + ML/AI&nbsp;papers&nbsp;📢</small></h1>
         {% if not g.user %}
         <form class="user-login" action="{{ url_for('login') }}" method="post">
           <div class="form-group">
-            <label for="userNm">User name</label> 
-            <input type="text" id="userNm" name="username">
+            <label class="sr-only" for="userNm">User name</label> 
+            <input placeholder="User name" type="text" id="userNm" name="username">
           </div>
           <div class="form-group">
-            <label for="passWd">Password</label> 
-            <input type="password" name="password" id="passWd">
+            <label class="sr-only" for="passWd">Password</label> 
+            <input placeholder="Password" type="password" name="password" id="passWd">
           </div>
           <input type="submit" value="Log in / Sign up" class="btn-fancy">
         </form>
@@ -227,17 +223,46 @@ $(document).ready(function(){
             Log out
           </a>
         </nav>
-        <nav class="user-links">
-          <a id="tabfriends" href="/friends">Friends</a>
-          <!-- <a id="tabdiscussions" href="/discussions">Discussions</a> -->
-          <a id="tabrec" href="/recommend">Recommended</a>
-          <a id="tablib" href="/library">Library</a>
-        </nav>
         {% endif %}
       </section>
     </header>
 
+    {% with flashes = get_flashed_messages() %}
+      {% if flashes %}
+        <div id="flashesdiv">
+          <ul class="flashes">
+          {% for message in flashes %}
+            <li role="alert">
+              <div style="float:right;cursor:pointer;" id="xmessage">✖</div>
+              {{ message }}
+          {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+    {% endwith %}
+
     <main id="maindiv">
+      <div class="top9238">
+        <div></div>
+        <!-- User account information on top right -->
+        <section>
+          {% if not g.user %}
+          <nav class="user-links">
+            <a id="tababout" href="/about">About</a> 
+            <a href="https://github.com/summerscope/fairXiv" target="_blank">Github</a>
+          </nav>
+          {% else %}
+          <nav class="user-links">
+            <a id="tabfriends" href="/friends">Friends</a>
+            <!-- <a id="tabdiscussions" href="/discussions">Discussions</a> -->
+            <a id="tabrec" href="/recommend">Recommended</a>
+            <a id="tablib" href="/library">Library</a>
+            <a id="tababout" href="/about">About</a>
+            <a href="https://github.com/summerscope/fairXiv" target="_blank">Github</a>
+          </nav>
+          {% endif %}
+        </section>
+      </div>
 
       {% if g.user %}
       <div>
