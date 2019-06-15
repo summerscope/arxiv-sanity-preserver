@@ -24,11 +24,12 @@ body {
 a {
 	color: #54a8c4;
 	text-decoration: none;
+	transition: all 200ms ease;
 }
 a:hover, 
 a:active,
 a:focus {
-	text-decoration: underline;
+	color: #007399;
 }
 
 p {
@@ -259,7 +260,7 @@ h1 a {
 h1 a:hover,
 h1 a:active,
 h1 a:focus {
-	text-decoration: none;
+	color: white;
 }
 
 .user-pills a,
@@ -458,13 +459,36 @@ article {
 	margin-bottom: 1em;
 	font-size: 0.9444444444444em;
 	padding: 2em 1em 1em 1em;
-	border: 1px solid #e5e5e5;
-	-webkit-box-shadow: 0px 6px 5px 0px rgba(0,0,0,0.05);
-	-moz-box-shadow: 0px 6px 5px 0px rgba(0,0,0,0.05);
-	box-shadow: 0px 6px 5px 0px rgba(0,0,0,0.05);
+	/* border: 1px solid #e5e5e5; */
+	-webkit-box-shadow: 
+	-1px -1px 0 0 #dbdbdb,
+	0 1px 0 0 #e5e5e5,
+	0 2px 0 0 #dbdbdb,
+	0 3px 0 0 #d1d1d1,
+	0 4px 0 0 #c7c7c7,
+	1px 1px 0 0 #c5d6db;
+	-moz-box-shadow: 
+	-1px -1px 0 0 #dbdbdb,
+	0 1px 0 0 #e5e5e5,
+	0 2px 0 0 #dbdbdb,
+	0 3px 0 0 #d1d1d1,
+	0 4px 0 0 #c7c7c7,
+	1px 1px 0 0 #c5d6db;
+	box-shadow: 
+	-1px -1px 0 0 #dbdbdb,
+	0 1px 0 0 #e5e5e5,
+	0 2px 0 0 #dbdbdb,
+	0 3px 0 0 #d1d1d1,
+	0 4px 0 0 #c7c7c7,
+	1px 1px 0 0 #c5d6db;
+	border-radius: 0.3em 2em 0.3em 2em;
+	/* 0px 4px 8px 0px rgba(0,0,0,0.15) 
+	2px 2px 0 0 #7fb9cc
+	3px 3px 0 0 #66abc2
+	4px 4px 0 0 #54a8c4*/
 	/* Clip the top right corner of the paper */
-	-webkit-clip-path: polygon(calc(100% - 48px) 0, 100% 48px, 110% 110%, -10% 110%, -10% -10%);
-	clip-path: polygon(calc(100% - 48px) 0, 100% 48px, 110% 110%, -10% 110%, -10% -10%);
+	/* -webkit-clip-path: polygon(calc(100% - 48px) 0, 100% 48px, 110% 110%, -10% 110%, -10% -10%);
+	clip-path: polygon(calc(100% - 48px) 0, 100% 48px, 110% 110%, -10% 110%, -10% -10%); */
 }
 
 @media screen and (min-width: 768px){
@@ -475,6 +499,7 @@ article {
 		margin-left: 0;
 		margin-right: 0;
 		padding: 3em 2em 2em 2em;
+		border-radius: 0.3em 3em 0.3em 3em;
 	}
 }
 
@@ -568,9 +593,9 @@ article {
 
 #sys-messages, .msg {
 	width: 100%;
-	margin: 0 0 1em 0;
+	margin: 0 0.5em 1em 0.5em;
 	font-size: 0.833333333em;
-	color: #666;
+	color: #555;
 }
 
 @media screen and (min-width: 768px){
@@ -624,23 +649,28 @@ footer a:focus {
 
 
 .save-icon {
-	background-color: white;
+	background-color: #54a8c4;
 	background-image: url(/static/plus.svg);
 	background-size: 40%;
-	background-position: 4px 22px;
+	padding: calc(16px - 2px);
+	background-position: 8px 12px;
 	background-repeat: no-repeat;
-	padding: calc(24px - 2px);
 	position: absolute;
 	top: 0;
 	right: 0;
 	cursor: pointer;
 	border-color: transparent;
 	transition: all 200ms ease;
-	border: 1px solid #e5e5e5;
-	opacity: 0.7;
-	border-radius: 0;
-	-webkit-box-shadow: -1px 1px 4px 0px rgba(0,0,0,0.08); 
-	box-shadow: -1px 1px 4px 0px rgba(0,0,0,0.08);
+	opacity: 0.75;
+	border-radius: 0 2em 0 0.3em;
+}
+
+@media screen and (min-width:768px) {
+	.save-icon {
+		border-radius: 0 3em 0 0.3em;
+		padding: calc(24px - 2px);
+		background-position: 8px 18px;
+	}
 }
 
 .save-icon.remove {
@@ -745,6 +775,7 @@ ul.flashes li {
 .top9238 {
 	display: flex; 
 	flex-direction: column;
+	margin: 0 0.5em;
 }
 
 .top9238 section {
@@ -760,22 +791,33 @@ ul.flashes li {
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
+		margin: 0;
 	}
 
 	.top9238 section {
 		order: 1;
 	}
-
-	#recommend-time-choice {
-		flex-basis: 140px;
-		width: 140px;
-		flex-grow: 1;		
-	}
 }
+
 
 .timechoice {
 	display: block;
 }
+
+
+#recommend-time-choice {
+	margin: 0 0.5em;
+}
+
+@media screen and (min-width: 768px) {
+	#recommend-time-choice {
+		flex-basis: 140px;
+		width: 140px;
+		flex-grow: 1;
+		margin: 0;
+	}
+}
+
 
 #recommend-time-choice a {
 	transition: all 200ms ease;
@@ -979,13 +1021,6 @@ a.timechoice-selected:before {
 	margin: 0 0 0 1em;
 }
 
-.links:hover,
-.links:focus,
-.links:active {
-	text-decoration: none;
-	color: #007399;
-}
-
 .links:after {
 	content: " »";
 }
@@ -993,6 +1028,7 @@ a.timechoice-selected:before {
 /* Hidden visually for screen readers
 sourced https://gist.github.com/ffoodd/000b59f431e3e64e4ce1a24d5bb36034
 */
+
 .sr-only {
 	border: 0 !important;
 	clip: rect(1px, 1px, 1px, 1px) !important;
