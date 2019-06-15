@@ -662,65 +662,65 @@ def logout():
   flash('You have successfully logged out')
   return redirect(url_for('intmain'))
 
-# -----------------------------------------------------------------------------
-# int main
-# -----------------------------------------------------------------------------
+
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-p', '--prod', dest='prod', action='store_true', help='run in prod?')
+parser.add_argument('-r', '--num_results', dest='num_results', type=int, default=200, help='number of results to return per query')
+parser.add_argument('--port', dest='port', type=int, default=5000, help='port to serve on')
+args = parser.parse_args()
+print(args)
+
+if not os.path.isfile(Config.database_path):
+  print('did not find as.db, trying to create an empty database from schema.sql...')
+  print('this needs sqlite3 to be installed!')
+  os.system('sqlite3 as.db < schema.sql')
+
+print('loading the paper database', Config.db_serve_path)
+db = pickle.load(open(Config.db_serve_path, 'rb'))
+
+print('loading tfidf_meta', Config.meta_path)
+meta = pickle.load(open(Config.meta_path, "rb"))
+vocab = meta['vocab']
+idf = meta['idf']
+
+print('loading paper similarities', Config.sim_path)
+sim_dict = pickle.load(open(Config.sim_path, "rb"))
+
+print('loading user recommendations', Config.user_sim_path)
+user_sim = {}
+if os.path.isfile(Config.user_sim_path):
+  user_sim = pickle.load(open(Config.user_sim_path, 'rb'))
+
+print('loading serve cache...', Config.serve_cache_path)
+cache = pickle.load(open(Config.serve_cache_path, "rb"))
+DATE_SORTED_PIDS = cache['date_sorted_pids']
+TOP_SORTED_PIDS = cache['top_sorted_pids']
+SEARCH_DICT = cache['search_dict']
+
+print('connecting to mongodb...')
+client = pymongo.MongoClient()
+mdb = client.arxiv
+tweets_top1 = mdb.tweets_top1
+tweets_top7 = mdb.tweets_top7
+tweets_top30 = mdb.tweets_top30
+comments = mdb.comments
+tags_collection = mdb.tags
+goaway_collection = mdb.goaway
+follow_collection = mdb.follow
+print('mongodb tweets_top1 collection size:', tweets_top1.count())
+print('mongodb tweets_top7 collection size:', tweets_top7.count())
+print('mongodb tweets_top30 collection size:', tweets_top30.count())
+print('mongodb comments collection size:', comments.count())
+print('mongodb tags collection size:', tags_collection.count())
+print('mongodb goaway collection size:', goaway_collection.count())
+print('mongodb follow collection size:', follow_collection.count())
+
+TAGS = ['insightful!', 'thank you', 'agree', 'disagree', 'not constructive', 'troll', 'spam']
+
+  
 if __name__ == "__main__":
-   
-  parser = argparse.ArgumentParser()
-  parser.add_argument('-p', '--prod', dest='prod', action='store_true', help='run in prod?')
-  parser.add_argument('-r', '--num_results', dest='num_results', type=int, default=200, help='number of results to return per query')
-  parser.add_argument('--port', dest='port', type=int, default=5000, help='port to serve on')
-  args = parser.parse_args()
-  print(args)
-
-  if not os.path.isfile(Config.database_path):
-    print('did not find as.db, trying to create an empty database from schema.sql...')
-    print('this needs sqlite3 to be installed!')
-    os.system('sqlite3 as.db < schema.sql')
-
-  print('loading the paper database', Config.db_serve_path)
-  db = pickle.load(open(Config.db_serve_path, 'rb'))
-  
-  print('loading tfidf_meta', Config.meta_path)
-  meta = pickle.load(open(Config.meta_path, "rb"))
-  vocab = meta['vocab']
-  idf = meta['idf']
-
-  print('loading paper similarities', Config.sim_path)
-  sim_dict = pickle.load(open(Config.sim_path, "rb"))
-
-  print('loading user recommendations', Config.user_sim_path)
-  user_sim = {}
-  if os.path.isfile(Config.user_sim_path):
-    user_sim = pickle.load(open(Config.user_sim_path, 'rb'))
-  
-  print('loading serve cache...', Config.serve_cache_path)
-  cache = pickle.load(open(Config.serve_cache_path, "rb"))
-  DATE_SORTED_PIDS = cache['date_sorted_pids']
-  TOP_SORTED_PIDS = cache['top_sorted_pids']
-  SEARCH_DICT = cache['search_dict']
-
-  print('connecting to mongodb...')
-  client = pymongo.MongoClient()
-  mdb = client.arxiv
-  tweets_top1 = mdb.tweets_top1
-  tweets_top7 = mdb.tweets_top7
-  tweets_top30 = mdb.tweets_top30
-  comments = mdb.comments
-  tags_collection = mdb.tags
-  goaway_collection = mdb.goaway
-  follow_collection = mdb.follow
-  print('mongodb tweets_top1 collection size:', tweets_top1.count())
-  print('mongodb tweets_top7 collection size:', tweets_top7.count())
-  print('mongodb tweets_top30 collection size:', tweets_top30.count())
-  print('mongodb comments collection size:', comments.count())
-  print('mongodb tags collection size:', tags_collection.count())
-  print('mongodb goaway collection size:', goaway_collection.count())
-  print('mongodb follow collection size:', follow_collection.count())
-  
-  TAGS = ['insightful!', 'thank you', 'agree', 'disagree', 'not constructive', 'troll', 'spam']
-
   # start
   if args.prod:
     # run on Tornado instead, since running raw Flask in prod is not recommended
