@@ -321,7 +321,7 @@ h1 small[role="definition"] {
 	text-shadow: none;
 	margin-bottom: 0em;
 	margin-left: 0;
-	line-height: 1.35;	
+	line-height: 1.35;
 }
 
 h1 a {
@@ -1122,6 +1122,23 @@ a.timechoice-selected:before {
 .links {
 	font-size: 0.88888888888em;
 	margin: 0 0 0 1em;
+}
+
+.flip-h {
+	-moz-transform: scaleX(-1);
+	-o-transform: scaleX(-1);
+	-webkit-transform: scaleX(-1);
+	transform: scaleX(-1);
+	filter: FlipH;
+	-ms-filter: "FlipH";
+}
+
+.margin-r {
+	margin-right: 5px;
+}
+
+.margin-l {
+	margin-left: 5px;
 }
 
 /* Hidden visually for screen readers

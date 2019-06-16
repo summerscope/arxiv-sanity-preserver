@@ -199,7 +199,11 @@ $(document).ready(function(){
 
       <!-- User account information on top right -->
       <section>
-        <h1><small role="definition">📢&nbsp;{{ totpapers }} latest Fairness/Ethics + ML/AI&nbsp;papers&nbsp;📢</small></h1>
+        <h1>
+          <small role="definition">
+            <img class="margin-r" height="14px" src="/static/megaphone.svg" />{{ totpapers }} latest Fairness/Ethics + ML/AI&nbsp;papers<img class="margin-l flip-h" height="14px" src="/static/megaphone.svg" />
+          </small>
+        </h1>
         {% if not g.user %}
         <form class="user-login" action="{{ url_for('login') }}" method="post">
           <div class="form-group">
