@@ -15,4 +15,4 @@ $PYTHON analyze.py
 $PYTHON buildsvm.py
 $PYTHON make_cache.py
 
-systemctl --user restart fairXiv
+systemctl --user reload fairXiv
