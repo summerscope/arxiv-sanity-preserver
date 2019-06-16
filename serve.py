@@ -665,13 +665,6 @@ def logout():
 
 
 
-parser = argparse.ArgumentParser()
-parser.add_argument('-p', '--prod', dest='prod', action='store_true', help='run in prod?')
-parser.add_argument('-r', '--num_results', dest='num_results', type=int, default=200, help='number of results to return per query')
-parser.add_argument('--port', dest='port', type=int, default=5000, help='port to serve on')
-args = parser.parse_args()
-print(args)
-
 if not os.path.isfile(Config.database_path):
   print('did not find as.db, trying to create an empty database from schema.sql...')
   print('this needs sqlite3 to be installed!')
@@ -719,8 +712,16 @@ print('mongodb follow collection size:', follow_collection.count())
 
 TAGS = ['insightful!', 'thank you', 'agree', 'disagree', 'not constructive', 'troll', 'spam']
 
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-p', '--prod', dest='prod', action='store_true', help='run in prod?')
+parser.add_argument('-r', '--num_results', dest='num_results', type=int, default=200, help='number of results to return per query')
+parser.add_argument('--port', dest='port', type=int, default=5000, help='port to serve on')
+
   
 if __name__ == "__main__":
+  args = parser.parse_args()
+  print(args)
   # start
   if args.prod:
     # run on Tornado instead, since running raw Flask in prod is not recommended
@@ -737,3 +738,5 @@ if __name__ == "__main__":
     print('starting flask!')
     app.debug = False
     app.run(port=args.port, host='0.0.0.0')
+else:
+  args = parser.parse_args([])
