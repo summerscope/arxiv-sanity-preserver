@@ -111,12 +111,21 @@ function addPapers(num, dynamic) {
 
     // Save/Remove from library
     var lib_state_img = p.in_library === 1 ? 'remove' : 'add';
-    var button_text = p.in_library === 1 ? 'Remove from your library' : 'Save to your library';
-    var saveimg = tdiv.append('button').attr('class', lib_state_img)                    
-                    .classed('save-icon', true)
-                    .attr('type', 'button')
-                    .attr('id', 'lib'+p.pid)
-                    .append('span').classed('sr-only', true).classed('sr-only-focusable', true).html(button_text);
+    var remove_label = 'Remove from your library';
+    var add_label = 'Save to your library';
+    var button_text = p.in_library === 1 ? remove_label : add_label;
+
+    var savebutton = tdiv.append('button')
+        .attr('class', lib_state_img)
+        .classed('save-icon', true)
+        .attr('type', 'button')
+        .attr('id', 'lib'+p.pid);
+    var saveimg = savebutton
+        .append('span')
+        .classed('sr-only', true)
+        .classed('sr-only-focusable', true)
+
+    saveimg.html(button_text);
 
     // Paper title
     tdiv.append('h2').classed('ts', true).html(p.title);
@@ -141,10 +150,10 @@ function addPapers(num, dynamic) {
 
     if(p.comment) {
       tdiv.append('p').classed('ccs', true).html(p.comment);
-    } 
-                    
+    }
+
     // attach a handler for in-library toggle
-    saveimg.on('click', function(pid, elt){
+    savebutton.on('click', function(pid, elt, img){
       return function() {
         if(username !== '') {
           // issue the post request to the server
@@ -152,17 +161,21 @@ function addPapers(num, dynamic) {
            .done(function(data){
               // toggle state of the image to reflect the state of the server, as reported by response
               if(data === 'ON') {
-                elt.attr('src', 'static/saved.svg');
+                elt.classed('add', false);
+                elt.classed('remove', true);
+                img.html(remove_label);
               } else if(data === 'OFF') {
-                elt.attr('src', 'static/plus.svg');
+                elt.classed('add', true);
+                elt.classed('remove', false);
+                img.html(add_label);
               }
            });
         } else {
           alert('you must be logged in to save papers to library.')
         }
       }
-    }(p.pid, saveimg)); // close over the pid and handle to the image
-    
+    }(p.pid, savebutton, saveimg)); // close over the pid and handle to the image
+
 
     if(typeof p.img !== 'undefined') {
       div.append('figure').classed('animg', true)
