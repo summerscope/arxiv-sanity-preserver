@@ -109,6 +109,15 @@ function addPapers(num, dynamic) {
 
     var tdiv = div.append('section').classed('paperdesc', true);
 
+    // Paper publish date
+    
+    if(p.originally_published_time !== p.published_time) {
+      tdiv.append('time').classed('ds', true).html(p.published_time)
+          .append('time').classed('ds2', true).html('V1: ' + p.originally_published_time);
+    } else {
+      tdiv.append('time').classed('ds', true).html(p.published_time);
+    }
+
     // Save/Remove from library
     var lib_state_img = p.in_library === 1 ? 'remove' : 'add';
     var remove_label = 'Remove from your library';
@@ -133,11 +142,7 @@ function addPapers(num, dynamic) {
     // Paper authors
     tdiv.append('p').classed('as', true).html(build_authors_html(p.authors));
 
-    // Paper publish date
-    tdiv.append('time').classed('ds', true).html(p.published_time);
-    // if(p.originally_published_time !== p.published_time) {
-    //   tdiv.append('time').classed('ds2', true).html(p.originally_published_time + ' v1');
-    // }
+  
 
     // access PDF of the paper
     var pdf_link = p.link.replace("abs", "pdf"); // convert from /abs/ link to /pdf/ link. url hacking. slightly naughty
