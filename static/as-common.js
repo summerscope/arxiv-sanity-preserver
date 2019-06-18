@@ -142,8 +142,6 @@ function addPapers(num, dynamic) {
     // Paper authors
     tdiv.append('p').classed('as', true).html(build_authors_html(p.authors));
 
-  
-
     // access PDF of the paper
     var pdf_link = p.link.replace("abs", "pdf"); // convert from /abs/ link to /pdf/ link. url hacking. slightly naughty
     if(pdf_link === p.link) { var pdf_url = pdf_link } // replace failed, lets fall back on arxiv landing page
@@ -169,10 +167,12 @@ function addPapers(num, dynamic) {
                 elt.classed('add', false);
                 elt.classed('remove', true);
                 img.html(remove_label);
+                alert('Paper has been saved to your library');
               } else if(data === 'OFF') {
                 elt.classed('add', true);
                 elt.classed('remove', false);
                 img.html(add_label);
+                alert('Paper has been removed from your library');
               }
            });
         } else {
