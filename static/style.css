@@ -1169,6 +1169,38 @@ a.timechoice-selected:before {
 
 /* UTILS */
 
+blockquote {
+	margin: 1em 0;
+	font-style: italic;
+	font-size: 1.25em;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.meme-caption {
+	margin: -1.75em 0.66666666em 1em 0.66666666em;
+	text-align: center;
+	font-size: 2em;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	font-weight: bold;
+	text-shadow: 
+		-1px -1px 0 #fff,
+		-1px 0 0 #fff,
+		0 -1px 0 #fff,
+		1px 0 0 #fff,
+		1px 1px 0 #fff,
+		0 1px 0 #fff;
+}
+
+.flex {
+	display: flex;
+}
+
+.copy {
+	max-width: 600px;
+	margin: 0 auto;
+}
+
 .links {
 	font-size: 0.88888888888em;
 	margin-right: 1em;
