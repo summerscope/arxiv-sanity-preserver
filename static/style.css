@@ -173,6 +173,7 @@ figure {
 	display: inline-block;
 	margin-top: 0;
 }
+
 a.cs{
 	color: #666;
 	padding: .1em;
@@ -184,6 +185,7 @@ a.cs{
 	margin: 0 0.5em 0 0;
 	border-radius: 0.25em;
 	transition: all 200ms ease;
+	background: linear-gradient(270deg, #fff, #fff);
 }
 
 a.cs:before{
@@ -194,14 +196,16 @@ a.cs:before{
 }
 
 a.cs:hover:before,
-a.cs:active:before {
+a.cs:active:before,
+a.cs:focus:before {
 	color: #278aab;
 }
 
 a.cs:hover,
-a.cs:active { 
-	color: #333; 
-	background-color: #b4e7f8;
+a.cs:active,
+a.cs:focus { 
+	color: #333;
+	background: #f2f8f9;
 }
 
 a.cs.selected {
@@ -217,7 +221,7 @@ a.cs:after {
 }
 
 .ds {
-	color: #999;
+	color: #888;
 	font-size: 0.888888888888em;	
 	display: block;
 	margin-top: -0.6666666666rem;
