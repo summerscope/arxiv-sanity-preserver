@@ -1001,7 +1001,14 @@ ul.flashes li {
 
 a.vchoice:before,
 a.timechoice:before {
-	content: "☐";
+	/* content: "☐"; */
+	content: " ";
+	width: 12px;
+	height: 12px;
+	margin-right: 2px;
+	display: inline-block;
+	background: url('/static/box-empty.svg') no-repeat center center;
+	background-size: 12px;
 }
 
 a.vchoice-selected,
@@ -1011,7 +1018,8 @@ a.timechoice-selected {
 
 a.vchoice-selected:before,
 a.timechoice-selected:before {
-	content: "☑";
+	/* content: "☑"; */
+	background: url('/static/box-checked.svg') no-repeat center center;
 }
 
 .fdivider {
@@ -1233,6 +1241,11 @@ blockquote {
 
 .margin-l {
 	margin-left: 5px;
+}
+
+.column {
+	column-count: 2;
+	margin: 1em 0;
 }
 
 /* Hidden visually for screen readers
