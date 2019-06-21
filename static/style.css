@@ -1194,11 +1194,19 @@ blockquote {
 
 .flex {
 	display: flex;
+	flex-flow: wrap;
 }
 
 .copy {
 	max-width: 600px;
 	margin: 0 auto;
+	padding: 0 0.5em;
+}
+
+@media screen and (min-width: 768px) {
+	.copy {
+		padding: 0;
+	}
 }
 
 .links {
