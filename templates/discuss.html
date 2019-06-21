@@ -253,11 +253,9 @@ $(document).ready(function(){
         {% else %}
         <nav class="user-pills">
           <a href="{{ url_for('account') }}">
-            <img src="static/user.svg" /> 
             {{ g.user.username }}
           </a>
           <a href="{{ url_for('logout') }}">
-            <img src="static/sign-out.svg" /> 
             Log out
           </a>
         </nav>

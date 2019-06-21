@@ -380,13 +380,6 @@ h1 a:after {
 	margin-right: 0;
 }
 
-.user-pills a {
-	color: white;
-	text-decoration: none;
-	transition: all 200ms ease;
-	margin: 0 0.25em;
-}
-
 @media screen and (min-width: 768px) {
 	h1 small[role="definition"] {
 		text-align: right;
@@ -431,6 +424,11 @@ h1 a:after {
 }
 
 .user-pills a {
+	color: white;
+	text-decoration: none;
+	transition: all 200ms ease;
+	margin: 0 0.25em;
+	padding-left: 2.5em;
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none;
@@ -438,6 +436,18 @@ h1 a:after {
 
 .user-pills a:after {
 	border: none;
+}
+
+.user-pills a:first-child, 
+.user-pills a:last-child {
+	background-image: url('/static/user.svg');
+	background-repeat: no-repeat;
+	background-size: 16px;
+	background-position: 0.75em center;
+}
+
+.user-pills a:last-child {
+	background-image: url('/static/sign-out.svg');
 }
 
 .user-login input[type="submit"] {
