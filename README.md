@@ -3,11 +3,11 @@
 
 A fork of Andrej Karpathy's [www.arxiv-sanity.com/](http://www.arxiv-sanity.com/), fairXiv provides a modern responsive UI for searching papers on arXiv with improved usability and accessibility.
 
-fairXiv host papers with a focus on AI ethics and statistical fairness, but you can fork this repo to host any slice of arXiv you like, if you want to reproduce the interface.  Live at [www.fairXiv.org/](http://www.fairXiv.org/) serving over 1,000 of the latest arXiv papers (cs.[CV|AI|CL|LG|NE]/stat.ML).
+fairXiv host papers with a focus on AI ethics and statistical fairness, but you can fork this repo to host any slice of arXiv you like, if you want to reproduce the interface.  Live at [www.fairXiv.org/](http://www.fairXiv.org/) serving over 1,000 of the latest arXiv papers (cs.[CV|AI|CL|CY|LG|NE]/stat.ML AND fairness|ethics|ethical|safety).
 
-With this code base you could replicate the website to any of your favorite subsets of Arxiv by changing the categories in `fetch_papers.py`.
+With this code base you could replicate the website to any of your favorite subsets of Arxiv by changing the categories in `update.sh`.
 
-This project is a web interface that attempts to tame the overwhelming flood of papers on Arxiv. It allows researchers to keep track of recent papers, search for papers, sort papers by similarity to any paper, see recent popular papers, to add papers to a personal library, and to get personalized recommendations of (new or old) Arxiv papers. This code is currently running live at [www.arxiv-sanity.com/](http://www.arxiv-sanity.com/), where it's serving 25,000+ Arxiv papers from Machine Learning (cs.[CV|AI|CL|LG|NE]/stat.ML) over the last ~3 years. With this code base you could replicate the website to any of your favorite subsets of Arxiv by simply changing the categories in `fetch_papers.py`.
+<!-- This project is a web interface that attempts to tame the overwhelming flood of papers on Arxiv. It allows researchers to keep track of recent papers, search for papers, sort papers by similarity to any paper, see recent popular papers, to add papers to a personal library, and to get personalized recommendations of (new or old) Arxiv papers. This code is currently running live at [www.arxiv-sanity.com/](http://www.arxiv-sanity.com/), where it's serving 25,000+ Arxiv papers from Machine Learning (cs.[CV|AI|CL|LG|NE]/stat.ML) over the last ~3 years. With this code base you could replicate the website to any of your favorite subsets of Arxiv by simply changing the categories in `fetch_papers.py`. -->
 
 ![user interface](https://raw.github.com/summerscope/fairXiv/master/ui.png)
 
